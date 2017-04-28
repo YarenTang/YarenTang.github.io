@@ -1,24 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
-  
+  <title>Prefert</title>
+  <subtitle>prefer-tyl</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
-  <updated>2017-04-28T13:39:24.126Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="http://prefer-tyl.site/"/>
+  <updated>2017-04-25T13:21:42.641Z</updated>
+  <id>http://prefer-tyl.site/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>Prefert</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="http://prefer-tyl.site/2017/04/29/XSS-defense/"/>
+    <id>http://prefer-tyl.site/2017/04/29/XSS-defense/</id>
+    <published>2017-04-28T16:07:02.387Z</published>
+    <updated>2017-04-25T13:21:42.641Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="xss-的防御技巧"><a href="#xss-的防御技巧" class="headerlink" title="xss 的防御技巧"></a>xss 的防御技巧</h1><ul>
+<li>编码</li>
+</ul>
+<ul>
+<li>过滤</li>
+<li>矫正</li>
+</ul>
+<h2 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h2><blockquote>
+<p>对用户输入的数据进行HTML Entity 编码</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">字符</th>
+<th style="text-align:center">十进制</th>
+<th style="text-align:center">转义字符</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">“</td>
+<td style="text-align:center">&amp;#34 ;</td>
+<td style="text-align:center">&amp;quot ;</td>
+</tr>
+<tr>
+<td style="text-align:center">&amp;</td>
+<td style="text-align:center">&amp;#38 ;</td>
+<td style="text-align:center">&amp;amp ;</td>
+</tr>
+<tr>
+<td style="text-align:center">&lt;</td>
+<td style="text-align:center">&amp;#60 ;</td>
+<td style="text-align:center">&amp;it ;</td>
+</tr>
+<tr>
+<td style="text-align:center">&gt;</td>
+<td style="text-align:center">&amp;#62 ;</td>
+<td style="text-align:center">&amp;gt ;</td>
+</tr>
+<tr>
+<td style="text-align:center">不断开空格（non-breaking space）</td>
+<td style="text-align:center">&amp;#160 ;</td>
+<td style="text-align:center">&amp;nbsp ;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="过滤"><a href="#过滤" class="headerlink" title="过滤"></a>过滤</h2><ol>
+<li>移除用户上传的DOM属性，如onerror、onclick等事件相关的属性</li>
+<li>移除用户上传的Style节点、Script节点、Ifame节点（植入广告、引诱用户触发 <a href="http://baike.baidu.com/link?url=7ckc5gOn8iCKcqosysHNeZu6kUX4PaowA5Jt4mwzv2e_UYo1TsLqPM_6h93jIeVVJRRFOMilCaivDq1fGOHCKq" target="_blank" rel="external">CSRF</a> 攻击）等</li>
+</ol>
+<h2 id="矫正"><a href="#矫正" class="headerlink" title="矫正"></a>矫正</h2><ol>
+<li>避免直接对HTML Entity解码</li>
+<li>使用DOM Parse转换，校正不配对的DOM标签</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;xss-的防御技巧&quot;&gt;&lt;a href=&quot;#xss-的防御技巧&quot; class=&quot;headerlink&quot; title=&quot;xss 的防御技巧&quot;&gt;&lt;/a&gt;xss 的防御技巧&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;编码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;过滤&lt;/li&gt;
+&lt;li&gt;矫
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2017/04/28/hello-world/"/>
-    <id>http://yoursite.com/2017/04/28/hello-world/</id>
+    <link href="http://prefer-tyl.site/2017/04/28/hello-world/"/>
+    <id>http://prefer-tyl.site/2017/04/28/hello-world/</id>
     <published>2017-04-28T13:39:24.126Z</published>
     <updated>2017-04-28T13:39:24.126Z</updated>
     
