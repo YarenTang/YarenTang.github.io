@@ -6,6 +6,8 @@
 2.  **hexo generate**   # 生成静态页面至public目录
 3.  **hexo deploy**  # 将.deploy目录部署到GitHub
 
+懒人版  ->  **hexo d -g**  
+
 ### 启动
 
 - **hexo server**
