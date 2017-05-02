@@ -16,7 +16,7 @@
 <li><a href="#3-总结">3. 总结</a></li>
 </ul>
 <!-- tocstop -->
-<h2 id="1-什么是页面重构"><a href="#1-什么是页面重构？" class="headerlink" title="1. 什么是页面重构？"></a>1. 什么是页面重构？</h2><p>简单来说，页面重构就是：将设计稿转换成 WEB 页面。  </p>
+<h2 id="1-什么是页面重构"><a href="#1-什么是页面重构？" class="headerlink" title="1. 什么是页面重构？"></a>1. 什么是页面重构？</h2><p>简单来说，页面重构就是：<strong>将设计稿转换成 WEB 页面</strong>。  </p>
 <p>那我们重构时该注意哪些东西呢？  </p>
 <h2 id="2-基本原则和规范"><a href="#2-基本原则和规范" class="headerlink" title="2. 基本原则和规范"></a>2. 基本原则和规范</h2><p>在多人协同完成一个大型工程时，必要的原则与规范不仅能加快开发效率，更能使工程有着更好的体系结构，方便维护。  </p>
 <h3 id="21-常用规范"><a href="#2-1-常用规范" class="headerlink" title="2.1 常用规范"></a>2.1 常用规范</h3><p>与使用其他语言开发工程一样，我们需要有着统一的规范，最常见就是 <strong>编码风格</strong>，比如：  </p>
@@ -117,7 +117,7 @@
 <h3 id="23-样式抽离-ampamp-组件复用"><a href="#2-3-样式抽离-amp-amp-组件复用" class="headerlink" title="2.3 样式抽离 &amp;&amp; 组件复用"></a>2.3 样式抽离 &amp;&amp; 组件复用</h3><p>在后端开发中，我们常常将一些公共的字符串、函数等抽离出来，在需要的地方便可方便的调用。前端页面重构的时候，我们同样要注意组件的复用、组合性。</p>
 <p>以组件的粒度为依据，我们可以大致分为以下几类：</p>
 <ul>
-<li>base 提供最底层的、功能和粒度最小的的通用类样式，可以被所有页面引用，大致又可以细分为：<ul>
+<li><strong>base</strong> 提供最底层的、功能和粒度最小的的通用类样式，可以被所有页面引用，大致又可以细分为：<ul>
 <li>CSS reset    </li>
 <li>文字排版</li>
 <li>定位  </li>
@@ -126,10 +126,10 @@
 <li>…</li>
 </ul>
 </li>
-<li>common 出现频率高，功能相对独立的组件,如 <code>Button</code>、<code>Dialog</code>、<code>Tooltip</code> 等</li>
-<li>page 各页面独有的样式,实际中可划分为 <code>page-index.css</code> 、<code>page-dashboard.css</code> 等</li>
+<li><strong>common</strong> 出现频率高，功能相对独立的组件,如 <code>Button</code>、<code>Dialog</code>、<code>Tooltip</code> 等</li>
+<li><strong>page</strong> 各页面独有的样式,实际中可划分为 <code>page-index.css</code> 、<code>page-dashboard.css</code> 等</li>
 </ul>
-<p>在中、大型项目中，这样做不仅能使得代码精简，减少冗余，更能使页面更容易维护。  </p>
+<p>在中、大型项目中，这样做不仅能使得代码精简，减少冗余，更能使页面更容易维护，极大提高重构效率。  </p>
 <h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>当然，除了以上几点，我们需要遵循的原则和规范还很多。总的来说，页面重构时，我们需要首先考虑的因素便是语义化 ：HTML 标签语义化、CSS 命名语义化等等。语义化的最终目的就是使得人与机器对页面识别度更高。在遵循规范的基础上，采取恰当的原则，并且在编码中考虑组件复用、样式抽离。但是原则和规范并不总是一成不变的，在不同的情况下，高效、便于协作与维护的方式便是最佳原则与规范。  </p>
 <p>更多请参考<a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/" target="_blank" rel="external">About HTML semantics and front-end architecture</a></p>
 </div></article></div></main><footer><div class="paginator"></div><div class="copyright"><p>© 2017 <a href="http://prefer-tyl.site">Prefert</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
