@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://prefer-tyl.site/"/>
-  <updated>2017-05-01T05:51:53.068Z</updated>
+  <updated>2017-05-02T15:06:10.474Z</updated>
   <id>http://prefer-tyl.site/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://prefer-tyl.site/2017/04/30/restructure-web-page/"/>
     <id>http://prefer-tyl.site/2017/04/30/restructure-web-page/</id>
     <published>2017-04-30T08:55:13.027Z</published>
-    <updated>2017-05-01T05:51:53.068Z</updated>
+    <updated>2017-05-02T15:06:10.474Z</updated>
     
     <content type="html"><![CDATA[<!-- toc -->
 <ul>
@@ -34,13 +34,13 @@
 <li><a href="#224-css-命名语义化">2.2.4 CSS 命名语义化</a></li>
 </ul>
 </li>
-<li><a href="#23-可复用-易组合的组件">2.3 可复用、易组合的组件</a></li>
+<li><a href="#23-样式抽离-组件复用">2.3 样式抽离 &amp;&amp; 组件复用</a></li>
 </ul>
 </li>
 <li><a href="#3-总结">3. 总结</a></li>
 </ul>
 <!-- tocstop -->
-<h2 id="1-什么是页面重构"><a href="#1-什么是页面重构？" class="headerlink" title="1. 什么是页面重构？"></a>1. 什么是页面重构？</h2><p>简单来说，页面重构就是将现有页面重新构造，使其具备更好的页面结构、更好的性能等。  </p>
+<h2 id="1-什么是页面重构"><a href="#1-什么是页面重构？" class="headerlink" title="1. 什么是页面重构？"></a>1. 什么是页面重构？</h2><p>简单来说，页面重构就是：将设计稿转换成 WEB 页面。  </p>
 <p>那我们重构时该注意哪些东西呢？  </p>
 <h2 id="2-基本原则和规范"><a href="#2-基本原则和规范" class="headerlink" title="2. 基本原则和规范"></a>2. 基本原则和规范</h2><p>在多人协同完成一个大型工程时，必要的原则与规范不仅能加快开发效率，更能使工程有着更好的体系结构，方便维护。  </p>
 <h3 id="21-常用规范"><a href="#2-1-常用规范" class="headerlink" title="2.1 常用规范"></a>2.1 常用规范</h3><p>与使用其他语言开发工程一样，我们需要有着统一的规范，最常见就是 <strong>编码风格</strong>，比如：  </p>
@@ -66,7 +66,7 @@
 </ol>
 <p>其次是 <strong>命名</strong>，我们建议对 HTML 元素名称，属性，属性值，CSS 选择器，属性和属性值（字符串除外）使用小写字母命名，并且使用 <code>-</code> 进行分隔，举个例子：<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 不推荐 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">A</span> <span class="attr">HREF</span>=<span class="string">"/"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">A</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 推荐 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"/"</span> <span class="attr">id</span>=<span class="string">"href-index"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 不推荐 */</span>  </div><div class="line"><span class="selector-tag">color</span>: <span class="selector-id">#E5E5E5</span>;  </div><div class="line"><span class="comment">/* 推荐 */</span></div><div class="line"><span class="selector-tag">color</span>: <span class="selector-id">#e5e5e5</span>;</div></pre></td></tr></table></figure>
-<p>然后是书写顺序，比较常见的 CSS 样式书写顺序如下：  </p>
+<p>另外还有书写顺序，比较常见的 CSS 样式书写顺序如下：  </p>
 <ol>
 <li>位置属性(<code>position</code>, <code>top</code>, <code>right</code>, <code>z-index</code>, <code>display</code>, <code>float</code> 等)  </li>
 <li>大小(<code>width</code>, <code>height</code>, <code>padding</code>, <code>margin</code>)  </li>
@@ -74,7 +74,7 @@
 <li>背景(<code>background</code>, <code>border</code> 等)  </li>
 <li>其他(<code>animation</code>, <code>transition</code> 等)  </li>
 </ol>
-<p>以上仅列举了部分规范，了解更多请<a href="https://google.github.io/styleguide/htmlcssguide.html" target="_blank" rel="external">点击</a>  </p>
+<p>以上仅列举了部分规范，更多请参考 <a href="http://eslint.cn/docs/rules/" target="_blank" rel="external">ESLint</a>  </p>
 <h3 id="22-语义化-ampamp-seo"><a href="#2-2-语义化-amp-amp-SEO" class="headerlink" title="2.2 语义化 &amp;&amp; SEO"></a>2.2 语义化 &amp;&amp; SEO</h3><h4 id="221-什么是语义化"><a href="#2-2-1-什么是语义化" class="headerlink" title="2.2.1 什么是语义化"></a>2.2.1 什么是语义化</h4><blockquote>
 <p>语义化是指使用恰当语义的 HTML 标签、class 类名等内容，让页面具有良好的结构与含义，从而让人和机器都能快速理解网页内容。  </p>
 </blockquote>
@@ -138,22 +138,23 @@
 <h4 id="224-css-命名语义化"><a href="#2-2-4-CSS-命名语义化" class="headerlink" title="2.2.4 CSS 命名语义化"></a>2.2.4 CSS 命名语义化</h4><p>CSS 命名的语义就是 <code>class</code> 和 <code>id</code> 命名的语义。<br><code>class</code> 属性作为 HTML 与 CSS 衔接的纽带，其本意是用来描述元素内容的。指用易于理解的名称对 HTML 标签附加的 <code>class</code> 或 <code>id</code> 命名。如果说 HTML 语义化标签是给机器看的，那么 CSS 命名的语义化就是给人看的。良好的 CSS 命名方式减少沟通调试成本，易于理解。  </p>
 <p>CSS 命名首先要满足 W3C 的命名规范和团队的命名规范。其次是高效和可重用性。  </p>
 <p>就好像 <code>.main</code> / <code>.sidebar</code> 会比 <code>.left_content</code> / <code>.right_content</code> 的 class 命名灵活性更好。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 以表现为中心 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"lr margin10"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>nickName:seg<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 以信息为中心 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"user-info"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">em</span>&gt;</span>nickName:seg<span class="tag">&lt;/<span class="name">em</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<h3 id="23-可复用-易组合的组件"><a href="#2-3-可复用、易组合的组件" class="headerlink" title="2.3 可复用、易组合的组件"></a>2.3 可复用、易组合的组件</h3><p>在开发后端服务器时，我们常常将一些公共的字符串、函数等抽离出来，在需要的地方便可方便的调用。在页面重构的时候，我们同样要注意组件的复用、组合性。</p>
-<p>一个灵活的、可复用的组件既不依赖于 DOM 的某个部分，也不需要使用特定的元素类型。它应该能够适应不同的容器，并且可以很容易的加上样式。在不同的场景下，我们可以在这些组件的基础上添加额外的 HTML 元素，创建出更优的组件。  </p>
-<p>在易于组合的组件中，我们推荐使用类选择器( Class selectors)，而避免使用元素选择器( Type selectors) 。<br>举个例子：  </p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.btn</span> &#123; <span class="comment">/* styles */</span> &#125;</div><div class="line"><span class="selector-class">.uilist</span> &#123; <span class="comment">/* styles */</span> &#125;</div><div class="line"><span class="selector-class">.uilist</span> <span class="selector-tag">a</span> &#123; <span class="comment">/* styles */</span> &#125;</div></pre></td></tr></table></figure>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">"uilist"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"btn"</span> <span class="attr">href</span>=<span class="string">"#"</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">a</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">nav</span>&gt;</span></div></pre></td></tr></table></figure>
-<p>上面的例子中，由于 <code>.btn</code> 的优先级比 <code>.uilist a</code> 的优先级低，并且 <code>uilist</code> 需要有一个子节点 <code>a</code> ，导致 <code>btn</code> 和 <code>uilist</code> 易组合性降低了。  </p>
-<p>提高一个组件和 <code>uilist</code> 的易组合性的一个方法是用类选择器给子元素添加样式。这样不仅可以减少优先级对样式的影响，最大的好处就是允许你将样式应用到任何类型的子节点上：<br><figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="selector-class">.btn</span> &#123; <span class="comment">/* styles */</span> &#125;</div><div class="line"><span class="selector-class">.uilist</span> &#123; <span class="comment">/* styles */</span> &#125;</div><div class="line"><span class="selector-class">.uilist-item</span> &#123; <span class="comment">/* styles */</span> &#125;</div></pre></td></tr></table></figure></p>
-<pre><code class="html"><span class="tag">&lt;<span class="name">nav</span> <span class="attr">class</span>=<span class="string">"uilist"</span>&gt;</span>  
-  <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"uilist-item"</span> <span class="attr">href</span>=<span class="string">"/"</span>&gt;</span>Home<span class="tag">&lt;/<span class="name">a</span>&gt;</span>  
-  <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"uilist-item"</span> <span class="attr">href</span>=<span class="string">"/"</span>&gt;</span>About<span class="tag">&lt;/<span class="name">a</span>&gt;</span>  
-  <span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">"uilist-item"</span>&gt;</span>  
-    <span class="tag">&lt;<span class="name">a</span> <span class="attr">class</span>=<span class="string">"btn"</span> <span class="attr">href</span>=<span class="string">"/"</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">a</span>&gt;</span>  
-  <span class="tag">&lt;/<span class="name">span</span>&gt;</span>  
-<span class="tag">&lt;/<span class="name">nav</span>&gt;</span>
-</code></pre>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>当然，除了以上几点，我们需要遵循的原则和规范还很多。总的来说，页面重构时，我们需要首先考虑的因素便是语义化 ：HTML 标签语义化、CSS 命名语义化等等。语义化的最终目的就是使得人与机器对页面识别度更高。在遵循规范的基础上，采取恰当的原则，并且在编码中考虑结构的封装。但是原则和规范并不总是一成不变的，在不同的情况下，高效、便于协作与维护的方式便是最佳原则与规范。  </p>
+<h3 id="23-样式抽离-ampamp-组件复用"><a href="#2-3-样式抽离-amp-amp-组件复用" class="headerlink" title="2.3 样式抽离 &amp;&amp; 组件复用"></a>2.3 样式抽离 &amp;&amp; 组件复用</h3><p>在后端开发中，我们常常将一些公共的字符串、函数等抽离出来，在需要的地方便可方便的调用。前端页面重构的时候，我们同样要注意组件的复用、组合性。</p>
+<p>以组件的粒度为依据，我们可以大致分为以下几类：</p>
+<ul>
+<li>base 提供最底层的、功能和粒度最小的的通用类样式，可以被所有页面引用，大致又可以细分为：<ul>
+<li>CSS reset    </li>
+<li>文字排版</li>
+<li>定位  </li>
+<li>长度高度  </li>
+<li>边距  </li>
+<li>…</li>
+</ul>
+</li>
+<li>common 出现频率高，功能相对独立的组件,如 <code>Button</code>、<code>Dialog</code>、<code>Tooltip</code> 等</li>
+<li>page 各页面独有的样式,实际中可划分为 <code>page-index.css</code> 、<code>page-dashboard.css</code> 等</li>
+</ul>
+<p>在中、大型项目中，这样做不仅能使得代码精简，减少冗余，更能使页面更容易维护。  </p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>当然，除了以上几点，我们需要遵循的原则和规范还很多。总的来说，页面重构时，我们需要首先考虑的因素便是语义化 ：HTML 标签语义化、CSS 命名语义化等等。语义化的最终目的就是使得人与机器对页面识别度更高。在遵循规范的基础上，采取恰当的原则，并且在编码中考虑组件复用、样式抽离。但是原则和规范并不总是一成不变的，在不同的情况下，高效、便于协作与维护的方式便是最佳原则与规范。  </p>
 <p>更多请参考<a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/" target="_blank" rel="external">About HTML semantics and front-end architecture</a></p>
 ]]></content>
     
