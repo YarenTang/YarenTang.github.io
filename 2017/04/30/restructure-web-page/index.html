@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 页面重构应该遵循的基本原则和规范 · Prefert</title><meta name="description" content="页面重构应该遵循的基本原则和规范 - Prefert"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://prefer-tyl.site/atom.xml" title="Prefert"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/YarenTang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">页面重构应该遵循的基本原则和规范</h1><div class="post-info">Apr 30, 2017</div><div class="post-content"><!-- toc -->
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>  · Prefert</title><meta name="description" content=" - Prefert"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://prefer-tyl.site/atom.xml" title="Prefert"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/favicon.png" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/YarenTang" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">RSS</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title"></h1><div class="post-info">Apr 30, 2017</div><div class="post-content"><h1 id="页面重构应该遵循的基本原则和规范"><a href="#页面重构应该遵循的基本原则和规范" class="headerlink" title="页面重构应该遵循的基本原则和规范"></a>页面重构应该遵循的基本原则和规范</h1><!-- toc -->
 <ul>
 <li><a href="#1-什么是页面重构">1. 什么是页面重构？</a></li>
 <li><a href="#2-基本原则和规范">2. 基本原则和规范</a><ul>
@@ -23,13 +23,13 @@
 <ol>
 <li><p><strong>空格</strong>  </p>
 <ul>
-<li>等号前后空格、运算符前后使用空格分隔。</li>
-<li>在逗号和冒号后添加空格。  </li>
+<li>等号前后空格、运算符前后使用空格分隔   </li>
+<li>在逗号和冒号后添加空格  </li>
 </ul>
 </li>
 <li><p><strong>空行</strong>  </p>
 <ul>
-<li>为每个逻辑功能块添加空行，这样更易于阅读。  </li>
+<li>为每个逻辑功能块添加空行，这样更易于阅读    </li>
 <li>将左花括号与选择器放在同一行  </li>
 <li>将右花括号独立放在一行，并以分号作为结束符号  </li>
 </ul>
@@ -66,12 +66,12 @@
 <p>这样的架构缺点比较明显：  </p>
 <ul>
 <li>需要用到很多 <code>div</code> 标签,但实际上 <code>div</code> 标签并没有语义，这不利于爬虫对页面内容进行抓取  </li>
-<li>文档结构不明确。之前我一直认为有 <code>id</code> 就足够了，但是后来发现在一大堆 <code>&lt;div&gt;</code> 中找出这些 <code>id</code> 并不那么快捷  </li>
+<li>文档结构不明确。也许你认为有 <code>id</code> 就足够了，但是后面会发现在一大堆 <code>&lt;div&gt;</code> 中找出这些 <code>id</code> 并不高效</li>
 </ul>
 <p>于是，在 HTML5 中，页面架构变成了这样的：  </p>
 <p><img src="http://ootgqk2ga.bkt.clouddn.com/%E9%A1%B5%E9%9D%A2%E9%87%8D%E6%9E%84-html5%E4%B9%8B%E5%90%8E%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BB%93%E6%9E%84.png" alt="">  </p>
 <p>这样的结构看起来就清晰多了，我们可以直接从标签名称得知它的作用。  </p>
-<p>当然，我们也不是说将所有的 <code>div</code> 一股脑替换为对应的语义化标签(比如考虑到网页兼容问题)，具体情况应具体分析。  </p>
+<p>当然，我们也不是说将所有的 <code>div</code> 全部替换为对应的语义化标签(比如考虑到网页兼容问题)，具体情况应具体分析。  </p>
 <p>根据应用场景，一些常用的标签元素有：  </p>
 <table>
 <thead>
@@ -115,21 +115,20 @@
 <p>CSS 命名首先要满足 W3C 的命名规范和团队的命名规范。其次是高效和可重用性。  </p>
 <p>就好像 <code>.main</code> / <code>.sidebar</code> 会比 <code>.left_content</code> / <code>.right_content</code> 的 class 命名灵活性更好。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- 以表现为中心 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"lr margin10"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>nickName:seg<span class="tag">&lt;/<span class="name">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span></div><div class="line"></div><div class="line"><span class="comment">&lt;!-- 以信息为中心 --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">"user-info"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">em</span>&gt;</span>nickName:seg<span class="tag">&lt;/<span class="name">em</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></div></pre></td></tr></table></figure></p>
 <h3 id="23-样式抽离-ampamp-组件复用"><a href="#2-3-样式抽离-amp-amp-组件复用" class="headerlink" title="2.3 样式抽离 &amp;&amp; 组件复用"></a>2.3 样式抽离 &amp;&amp; 组件复用</h3><p>在后端开发中，我们常常将一些公共的字符串、函数等抽离出来，在需要的地方便可方便的调用。前端页面重构的时候，我们同样要注意组件的复用、组合性。</p>
-<p>以组件的粒度为依据，我们可以大致分为以下几类：</p>
+<p>前端页面重构的时候，我们同样要注意组件的复用、组合性。</p>
+<p>在 前端模块化 的历史演变中，曾有一段时期我们会这样构造组件：  </p>
 <ul>
-<li><strong>base</strong> 提供最底层的、功能和粒度最小的的通用类样式，可以被所有页面引用，大致又可以细分为：<ul>
-<li>CSS reset    </li>
-<li>文字排版</li>
-<li>定位  </li>
-<li>长度高度  </li>
-<li>边距  </li>
-<li>…</li>
+<li><strong>base</strong> 提供最底层的、功能和粒度最小的的通用类样式，可以被所有页面引用  </li>
+<li><strong>common</strong> 出现频率高，功能相对独立的组件，如 <code>Button</code>、<code>Dialog</code>、<code>Tooltip</code> 等  </li>
+<li><strong>page</strong> 各页面独有的样式，实际中可划分为 <code>page-index.css</code> 、<code>page-dashboard.css</code> 等  </li>
 </ul>
-</li>
-<li><strong>common</strong> 出现频率高，功能相对独立的组件,如 <code>Button</code>、<code>Dialog</code>、<code>Tooltip</code> 等</li>
-<li><strong>page</strong> 各页面独有的样式,实际中可划分为 <code>page-index.css</code> 、<code>page-dashboard.css</code> 等</li>
-</ul>
-<p>在中、大型项目中，这样做不仅能使得代码精简，减少冗余，更能使页面更容易维护，极大提高重构效率。  </p>
-<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>当然，除了以上几点，我们需要遵循的原则和规范还很多。总的来说，页面重构时，我们需要首先考虑的因素便是语义化 ：HTML 标签语义化、CSS 命名语义化等等。语义化的最终目的就是使得人与机器对页面识别度更高。在遵循规范的基础上，采取恰当的原则，并且在编码中考虑组件复用、样式抽离。但是原则和规范并不总是一成不变的，在不同的情况下，高效、便于协作与维护的方式便是最佳原则与规范。  </p>
-<p>更多请参考<a href="http://nicolasgallagher.com/about-html-semantics-front-end-architecture/" target="_blank" rel="external">About HTML semantics and front-end architecture</a></p>
+<p>但是随着工程的逐渐壮大，使用及维护起来还是比较困难。我们期望 组件/样式 有着 “按需引入，即插即用” 的特性。比如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">"./style.css"</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">"./style.less"</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">"./template.jade"</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">"./image.png"</span>);</div></pre></td></tr></table></figure></p>
+<p>为了实现这样的引入方式，我们需要使用 Loader 。  </p>
+<p>Loader 可以理解为是模块和资源的转换器，它本身是一个函数，接受源文件作为参数，返回转换的结果。这样，我们就可以通过 <code>require</code> 来加载任何类型的模块或文件。  </p>
+<p>如果我们要在 <code>index.html</code> 引入一个 CSS 文件 <code>style.css</code>，首页将 <code>style.css</code> 也看成是一个模块，然后用 <code>css-loader</code> 来读取它，再用 <code>style-loader</code> 把它插入到页面中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">/* style.css */</div><div class="line">body &#123; background: yellow; &#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// entry.js</span></div><div class="line"><span class="built_in">require</span>(<span class="string">"!style-loader!css-loader!./style.css"</span>) <span class="comment">// 载入 style.css</span></div></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">&lt;!-- index.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"entry.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure>
+<p>安装 loader :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install css-loader style-loader</div></pre></td></tr></table></figure></p>
+<p>在 <a href="https://vuefe.cn/v2/guide/index.html" target="_blank" rel="external">Vue.js</a> 中，我们可以将 <code>HTML</code>、<code>CSS</code>、<code>JavaScript</code> 都写于一个 <code>.vue</code> 格式的文件中，一个文件便对应一个组件，并且可以在其他组件中很方便的引入。  </p>
+<h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>当然，除了以上几点，我们需要遵循的原则和规范还很多。总的来说，页面重构时，在规范编码的基础上我们首先考虑的因素便是语义化：HTML 标签语义化、CSS 命名语义化等等。语义化的最终目的就是使得人与机器对页面识别度更高。其次，为了方便协作与后期维护，我们应该考虑组件复用、样式抽离，或者说模块化等。原则和规范并不总是一成不变的，随着前端技术的快速发展，高效、便于协作与维护的方式便是最佳原则与规范。</p>
 </div></article></div></main><footer><div class="paginator"></div><div class="copyright"><p>© 2017 <a href="http://prefer-tyl.site">Prefert</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
