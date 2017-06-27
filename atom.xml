@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://prefer-tyl.site/"/>
-  <updated>2017-06-27T12:45:17.885Z</updated>
+  <updated>2017-06-27T13:07:18.430Z</updated>
   <id>http://prefer-tyl.site/</id>
   
   <author>
@@ -20,9 +20,11 @@
     <link href="http://prefer-tyl.site/2017/06/27/front-page-modular-history/"/>
     <id>http://prefer-tyl.site/2017/06/27/front-page-modular-history/</id>
     <published>2017-06-27T12:00:13.000Z</published>
-    <updated>2017-06-27T12:45:17.885Z</updated>
+    <updated>2017-06-27T13:07:18.430Z</updated>
     
-    <content type="html"><![CDATA[<!-- toc -->
+    <content type="html"><![CDATA[<p>模块化是一种处理复杂系统分解成为更好的可管理模块的方式，它可以把系统代码划分为一系列职责单一，高度解耦且可替换的模块，系统中某一部分的变化将如何影响其它部分就会变得显而易见，系统的可维护性更加简单…</p>
+<a id="more"></a>
+<!-- toc -->
 <ul>
 <li><a href="#1-什么是模块化">1. 什么是模块化</a></li>
 <li><a href="#2-为什么要模块化">2. 为什么要模块化</a></li>
@@ -198,11 +200,7 @@
     
     <summary type="html">
     
-      &lt;!-- toc --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-什么是模块化&quot;&gt;1. 什么是模块化&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-为什么要模块化&quot;&gt;2. 为什么要模块化&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#3-web-前端的模块化如何发展&quot;&gt;3.
+      &lt;p&gt;模块化是一种处理复杂系统分解成为更好的可管理模块的方式，它可以把系统代码划分为一系列职责单一，高度解耦且可替换的模块，系统中某一部分的变化将如何影响其它部分就会变得显而易见，系统的可维护性更加简单…&lt;/p&gt;
     
     </summary>
     
@@ -214,9 +212,11 @@
     <link href="http://prefer-tyl.site/2017/04/30/restructure-web-page/"/>
     <id>http://prefer-tyl.site/2017/04/30/restructure-web-page/</id>
     <published>2017-04-30T00:30:13.000Z</published>
-    <updated>2017-06-27T12:16:01.361Z</updated>
+    <updated>2017-06-27T13:06:56.455Z</updated>
     
-    <content type="html"><![CDATA[<!-- toc -->
+    <content type="html"><![CDATA[<p>简单来说，页面重构就是：将设计稿转换成 WEB 页面。在多人协同完成一个大型工程时，必要的原则与规范不仅能加快开发效率，更能使工程有着更好的体系结构，方便维护…</p>
+<a id="more"></a>
+<!-- toc -->
 <ul>
 <li><a href="#1-什么是页面重构">1. 什么是页面重构？</a></li>
 <li><a href="#2-基本原则和规范">2. 基本原则和规范</a><ul>
@@ -353,11 +353,7 @@
     
     <summary type="html">
     
-      &lt;!-- toc --&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#1-什么是页面重构&quot;&gt;1. 什么是页面重构？&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#2-基本原则和规范&quot;&gt;2. 基本原则和规范&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#21-常用规范&quot;&gt;2.1 常用规范&lt;
+      &lt;p&gt;简单来说，页面重构就是：将设计稿转换成 WEB 页面。在多人协同完成一个大型工程时，必要的原则与规范不仅能加快开发效率，更能使工程有着更好的体系结构，方便维护…&lt;/p&gt;
     
     </summary>
     
