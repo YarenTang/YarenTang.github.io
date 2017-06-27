@@ -5,6 +5,24 @@
 <li><a href="#3-web-前端的模块化如何发展">3. Web 前端的模块化如何发展</a><ul>
 <li><a href="#31-发展历史">3.1 发展历史</a></li>
 <li><a href="#311-函数封装">3.1.1 函数封装</a></li>
+<li><a href="#312-对象">3.1.2 对象</a></li>
+<li><a href="#313-立即执行函数immediately-invoked-function-expression">3.1.3 立即执行函数(immediately-invoked function expression )</a></li>
+<li><a href="#314-script-loader">3.1.4 Script Loader</a><ul>
+<li><a href="#labjs">LABjs</a></li>
+<li><a href="#commonjs">CommonJS</a></li>
+<li><a href="#双塔奇兵-amdcmd">双塔奇兵 AMD/CMD</a></li>
+</ul>
+</li>
+<li><a href="#32-解决方案">3.2 解决方案</a><ul>
+<li><a href="#webpack">Webpack</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#4-未来的模块化">4. 未来的模块化</a><ul>
+<li><a href="#webassembly-是什么">WebAssembly 是什么</a></li>
+<li><a href="#webassembly-的目标">WebAssembly 的目标</a></li>
+<li><a href="#webassembly-的核心">WebAssembly 的核心</a></li>
 </ul>
 </li>
 </ul>
@@ -19,26 +37,78 @@
 <p>熟悉 Java 语言的同学都知道，在 Java 中有一个重要的概念——<code>package</code> (包)，我们会将相同逻辑的代码放到一个 <code>package</code> 下，在需要的地方 <code>import</code> (引入)即可。    </p>
 <p>前端是否有类似 <code>package</code> 的概念呢？  </p>
 <h2 id="3-web-前端的模块化如何发展"><a href="#3-Web-前端的模块化如何发展" class="headerlink" title="3. Web 前端的模块化如何发展"></a>3. Web 前端的模块化如何发展</h2><h3 id="31-发展历史"><a href="#3-1-发展历史" class="headerlink" title="3.1 发展历史"></a>3.1 发展历史</h3><p>由于 JavaScript 这门语言设计用时非常短，所以很多方面都没有考虑周全。好在它的生态圈非常强大，广大开发者为了更好的使用它，对它不断优化。</p>
-<h3 id="311-函数封装"><a href="#3-1-1-函数封装" class="headerlink" title="3.1.1 函数封装"></a>3.1.1 函数封装</h3><p>  最早期的时候，我们在一个文件里编写相关函数，像下面这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function fn1()&#123;</div><div class="line">    statement</div><div class="line">&#125;</div><div class="line"></div><div class="line">function fn2()&#123;</div><div class="line">    statement</div><div class="line">&#125;</div><div class="line">```  </div><div class="line"></div><div class="line">需要的时候加载文件并调用相关函数即可。  </div><div class="line">**缺点：Global 被污染，代码中很容易出现命名冲突。**  </div><div class="line"></div><div class="line">### 3.1.2 对象  </div><div class="line">为了解决上面的问题，我们又将一个个文件划分为一个个对象，这样在加载的时候就不用加载很多文件。代码如下：</div></pre></td></tr></table></figure></p>
-<p> var MYAPP = {<br>   foo: function(){},<br>   bar: function(){}<br> }</p>
-<p> MYAPP.foo(); //需要时执行<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">这样虽然能减少 Global 上的变量数目，避免变量污染。但是**本质是对象，外部对象可以对其他对象进行修改，很不安全**  。  </div><div class="line"></div><div class="line">### 3.1.3 立即执行函数(immediately-invoked function expression )   </div><div class="line"></div><div class="line"> &gt; IIFE (立即调用函数表达式) 是一个 JavaScript 函数 ，它会在定义时立即执行.</div><div class="line">也有人将 IIFE 称为匿名闭包.</div><div class="line"></div><div class="line">举个例子：</div></pre></td></tr></table></figure></p>
-<p>var Module = (function(){<br>    var _private = “safe now”;<br>    var foo = function(){<br>        console.log(_private)<br>    }</p>
-<pre><code>return {
-    foo: foo
-}
-</code></pre><p>})()</p>
-<p>Module.foo();<br>Module._private; // undefined<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">我们可以调用定义的方法，但是不能调用定义的属性。这样的模式使得变量冲突降到最低，并且能够控制暴露的方法(类似于接口）。这便是现代模块实现的基石！  </div><div class="line"></div><div class="line">### 3.1.4 Script Loader  </div><div class="line"></div><div class="line">最原始的 JS 加载方法就是在 Html 头文件中通过 Script 标签直接引入，类似下面这样：</div></pre></td></tr></table></figure></p>
-<p><script src="http://remote.tld/jquery.js"></script></p>
-<p><script src="local/plugin1.jquery.js"></script></p>
-<p><script src="local/plugin2.jquery.js"></script></p>
-<p><script src="local/init.js"></script></p>
-<p><script><br>    initMyPage();<br></script><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">初学者可能会有疑问，全都写在一个文件中看着不是挺方便的吗？  </div><div class="line">首先以上列举的可能只是实际项目中的一小部分，其次不要忽视 `&lt;script&gt;` 的一个特点：`并行加载，顺序执行`，这要求开发者需要按照严格的读取顺序，并且很有可能会阻塞阻止文档渲染(`async` 新特性在 HTML5 中才提出)。文件少的时候写起来会很方便，一旦项目变复杂缺点就会暴露无疑：**难以维护，依赖模糊，请求过多** 。  </div><div class="line"></div><div class="line">#### LABjs  </div><div class="line">为了解决依赖模糊，我们迫切需要一个加载器（`Loader`）最先出现在开发者视野中的 `Loader` 应该是 [`LABjs`](https://github.com/getify/LABjs])(2009)（ HTML5 发布才有了 `async` 特性）</div><div class="line"></div><div class="line">&gt; LABjs 的核心是 LAB（Loading and Blocking）：Loading 指异步并行加载，Blocking 是指同步等待执行。  </div><div class="line"></div><div class="line">通过使用 LABjs ,上方代码就可以变成这样：</div></pre></td></tr></table></figure></p>
-<p><script src="LAB.js"></script></p>
-<p><script><br>  $LAB<br>  .script(“<a href="http://remote.tld/jquery.js&quot;).wait()//`.wait`">http://remote.tld/jquery.js&quot;).wait()//`.wait`</a> 表示加载后立即运行<br>  .script(“/local/plugin1.jquery.js”)<br>  .script(“/local/plugin2.jquery.js”).wait()<br>  .script(“/local/init.js”).wait(function(){<br>      initMyPage();<br>  });<br></script><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">当然同一时期风靡的还有类库模块化框架 [YUI](https://yuilibrary.com/)，大家可自行查阅。</div><div class="line"></div><div class="line">#### CommonJS  </div><div class="line"></div><div class="line">服务器端的 `Node.js` 遵循 [CommonJS规范](http://wiki.commonjs.org/wiki/CommonJS)，该规范的核心思想是允许模块通过 `require` 方法来同步加载所要依赖的其他模块，然后通过 `exports` 或 `module.exports` 来导出需要暴露的接口。</div></pre></td></tr></table></figure></p>
-<p>require(“module”);<br>require(“../file.js”);<br>exports.doStuff = function() {};<br>module.exports = someValue;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">优点:  </div><div class="line"></div><div class="line">- 服务器端模块便于重用  </div><div class="line">- [NPM](https://www.npmjs.com/) 中已经有将近20万个可以使用模块包  </div><div class="line">- 简单并容易使用  </div><div class="line"></div><div class="line">缺点：  </div><div class="line"></div><div class="line">- 同步的模块加载方式不适合在浏览器环境中，同步意味着阻塞加载，浏览器资源是异步加载的  </div><div class="line">- 不能非阻塞的并行加载多个模块  </div><div class="line"></div><div class="line">实现:  </div><div class="line"></div><div class="line">- NodeJS</div><div class="line"></div><div class="line">#### 双塔奇兵 AMD/CMD  </div><div class="line"></div><div class="line">Commonjs用在服务器端，加载是同步的。    </div><div class="line">AMD, CMD用在浏览器端，加载是异步的。  </div><div class="line"></div><div class="line">|       -        | AMD          | CMD  |  </div><div class="line">| ------------- |:-------------|:-----|  </div><div class="line">| 概念      | [Asynchronous Module Definition](https://github.com/amdjs/amdjs-api) 规范其实只有一个主要接口 `define(id?, dependencies?, factory)`，它要在声明模块的时候指定所有的依赖 `dependencies`，并且还要当做形参传到 factory 中，对于依赖的模块提前执行，依赖前置。| [Common Module Definition](https://github.com/cmdjs/specification/blob/master/draft/module.md) 规范和 AMD 很相似，尽量保持简单，并与 `CommonJS` 和 `Node.js` 的 `Modules 规范` 保持了很大的兼容性。 |</div><div class="line">| 优点      | 1. 适合在浏览器环境中异步加载模块&lt;/br&gt; 2. 可以并行加载多个模块      |   1. 依赖就近，延迟执行 &lt;/br&gt; 2. 可以很容易在 Node.js 中运行 |  </div><div class="line">| 缺点      | 1. 提高了开发成本，代码的阅读和书写比较困难，模块定义方式的语义不顺畅&lt;/br&gt; 2. 不符合通用的模块化思维方式，是一种妥协的实现      |   依赖 SPM 打包，模块的加载逻辑偏重 |  </div><div class="line">| 实现      |     [RequireJS](http://requirejs.org/)          |  [SeaJS](http://seajs.org/)     |  </div><div class="line"></div><div class="line">两者最明显的区别可以从以下代码中查看：</div></pre></td></tr></table></figure></p>
-<p>//AMD 推崇依赖前置，在定义模块的时候就要声明其依赖的模块<br>define([‘a’, ‘b’], function(a, b){<br>    a.doSomething();    // 依赖前置，提前执行<br>    b.doSomething();<br>})</p>
-<p>//CMD 推崇依赖就近，只有在用到某个模块的时候再去require<br>define(function(require, exports, module){<br>    var a = require(“a”);<br>    a.doSomething();<br>    var b = require(“b”);<br>    b.doSomething();    // 依赖就近，延迟执行<br>})<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">`CommonJS` (规划并标准化、致力于设计 JavaScript API)的诞生开启了 &quot;JavaScript 模块化&quot; 的时代。`CommonJS` 的模块提案为在服务器端的 JavaScript 模块化做出了很大的贡献，但是在浏览器下的 JavaScript 模块应用很有限。随之而来又诞生了其它前端领域的模块化方案，像 requireJS、SeaJS 等，然而这些模块化方案并不是十分适用 ，并没有从根本上解决模块化的问题。</div><div class="line"></div><div class="line">### 3.2 解决方案  </div><div class="line"></div><div class="line">前面已经为大家回顾了 JavaScript 的模块化发展历史，然而，在前端开发过程中还涉及到样式、图片、字体、HTML 模板等等众多的资源。这些资源还会以各种方言的形式存在，比如 coffeescript、 less、 sass、众多的模板库、多语言系统（i18n）等等。如果他们都可以视作模块，并且都可以通过 `require` 的方式来加载，将带来优雅的开发体验，比如：</div></pre></td></tr></table></figure></p>
-<p>require(“./style.css”);<br>require(“./style.less”);<br>require(“./template.jade”);<br>require(“./image.png”);<br>```  </p>
+<h3 id="311-函数封装"><a href="#3-1-1-函数封装" class="headerlink" title="3.1.1 函数封装"></a>3.1.1 函数封装</h3><p>  最早期的时候，我们在一个文件里编写相关函数，像下面这样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn1</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    statement</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn2</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    statement</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>需要的时候加载文件并调用相关函数即可。<br><strong>缺点：Global 被污染，代码中很容易出现命名冲突。</strong>  </p>
+<h3 id="312-对象"><a href="#3-1-2-对象" class="headerlink" title="3.1.2 对象"></a>3.1.2 对象</h3><p>为了解决上面的问题，我们又将一个个文件划分为一个个对象，这样在加载的时候就不用加载很多文件。代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> MYAPP = &#123;</div><div class="line">  <span class="attr">foo</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,</div><div class="line">  <span class="attr">bar</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;   </div><div class="line">&#125;</div><div class="line"></div><div class="line">MYAPP.foo(); <span class="comment">//需要时执行</span></div></pre></td></tr></table></figure></p>
+<p>这样虽然能减少 Global 上的变量数目，避免变量污染。但是<strong>本质是对象，外部对象可以对其他对象进行修改，很不安全</strong>。  </p>
+<h3 id="313-立即执行函数immediately-invoked-function-expression"><a href="#3-1-3-立即执行函数-immediately-invoked-function-expression" class="headerlink" title="3.1.3 立即执行函数(immediately-invoked function expression )"></a>3.1.3 立即执行函数(immediately-invoked function expression )</h3><blockquote>
+<p>IIFE (立即调用函数表达式) 是一个 JavaScript 函数 ，它会在定义时立即执行.<br>也有人将 IIFE 称为匿名闭包.</p>
+</blockquote>
+<p>举个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Module = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> _private = <span class="string">"safe now"</span>;</div><div class="line">    <span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(_private)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">foo</span>: foo</div><div class="line">    &#125;</div><div class="line">&#125;)()</div><div class="line"></div><div class="line">Module.foo();</div><div class="line">Module._private; <span class="comment">// undefined</span></div></pre></td></tr></table></figure></p>
+<p>我们可以调用定义的方法，但是不能调用定义的属性。这样的模式使得变量冲突降到最低，并且能够控制暴露的方法(类似于接口）。这便是现代模块实现的基石！  </p>
+<h3 id="314-script-loader"><a href="#3-1-4-Script-Loader" class="headerlink" title="3.1.4 Script Loader"></a>3.1.4 Script Loader</h3><p>最原始的 JS 加载方法就是在 Html 头文件中通过 Script 标签直接引入，类似下面这样：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"http://remote.tld/jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"local/plugin1.jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"local/plugin2.jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"local/init.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">	initMyPage();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>初学者可能会有疑问，全都写在一个文件中看着不是挺方便的吗？<br>首先以上列举的可能只是实际项目中的一小部分，其次不要忽视 <code>&lt;script&gt;</code> 的一个特点：<code>并行加载，顺序执行</code>，这要求开发者需要按照严格的读取顺序，并且很有可能会阻塞阻止文档渲染(<code>async</code> 新特性在 HTML5 中才提出)。文件少的时候写起来会很方便，一旦项目变复杂缺点就会暴露无疑：<strong>难以维护，依赖模糊，请求过多</strong> 。  </p>
+<h4 id="labjs"><a href="#LABjs" class="headerlink" title="LABjs"></a>LABjs</h4><p>为了解决依赖模糊，我们迫切需要一个加载器（<code>Loader</code>）最先出现在开发者视野中的 <code>Loader</code> 应该是 <a href="https://github.com/getify/LABjs]" target="_blank" rel="external"><code>LABjs</code></a>(2009)（ HTML5 发布才有了 <code>async</code> 特性）</p>
+<blockquote>
+<p>LABjs 的核心是 LAB（Loading and Blocking）：Loading 指异步并行加载，Blocking 是指同步等待执行。  </p>
+</blockquote>
+<p>通过使用 LABjs ,上方代码就可以变成这样：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"LAB.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  $LAB</div><div class="line">  .script(<span class="string">"http://remote.tld/jquery.js"</span>).wait()<span class="comment">//`.wait` 表示加载后立即运行</span></div><div class="line">  .script(<span class="string">"/local/plugin1.jquery.js"</span>)</div><div class="line">  .script(<span class="string">"/local/plugin2.jquery.js"</span>).wait()</div><div class="line">  .script(<span class="string">"/local/init.js"</span>).wait(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      initMyPage();</div><div class="line">  &#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
+<p>当然同一时期风靡的还有类库模块化框架 <a href="https://yuilibrary.com/" target="_blank" rel="external">YUI</a>，大家可自行查阅。</p>
+<h4 id="commonjs"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h4><p>服务器端的 <code>Node.js</code> 遵循 <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS规范</a>，该规范的核心思想是允许模块通过 <code>require</code> 方法来同步加载所要依赖的其他模块，然后通过 <code>exports</code> 或 <code>module.exports</code> 来导出需要暴露的接口。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">"module"</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">"../file.js"</span>);</div><div class="line">exports.doStuff = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"><span class="built_in">module</span>.exports = someValue;</div></pre></td></tr></table></figure>
+<p>优点:  </p>
+<ul>
+<li>服务器端模块便于重用  </li>
+<li><a href="https://www.npmjs.com/" target="_blank" rel="external">NPM</a> 中已经有将近20万个可以使用模块包  </li>
+<li>简单并容易使用  </li>
+</ul>
+<p>缺点：  </p>
+<ul>
+<li>同步的模块加载方式不适合在浏览器环境中，同步意味着阻塞加载，浏览器资源是异步加载的  </li>
+<li>不能非阻塞的并行加载多个模块  </li>
+</ul>
+<p>实现:  </p>
+<ul>
+<li>NodeJS</li>
+</ul>
+<h4 id="双塔奇兵-amdcmd"><a href="#双塔奇兵-AMD-CMD" class="headerlink" title="双塔奇兵 AMD/CMD"></a>双塔奇兵 AMD/CMD</h4><p>Commonjs用在服务器端，加载是同步的。<br>AMD, CMD用在浏览器端，加载是异步的。  </p>
+<table>
+<thead>
+<tr>
+<th>-</th>
+<th style="text-align:left">AMD</th>
+<th style="text-align:left">CMD</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>概念</td>
+<td style="text-align:left"><a href="https://github.com/amdjs/amdjs-api" target="_blank" rel="external">Asynchronous Module Definition</a> 规范其实只有一个主要接口 <code>define(id?, dependencies?, factory)</code>，它要在声明模块的时候指定所有的依赖 <code>dependencies</code>，并且还要当做形参传到 factory 中，对于依赖的模块提前执行，依赖前置。</td>
+<td style="text-align:left"><a href="https://github.com/cmdjs/specification/blob/master/draft/module.md" target="_blank" rel="external">Common Module Definition</a> 规范和 AMD 很相似，尽量保持简单，并与 <code>CommonJS</code> 和 <code>Node.js</code> 的 <code>Modules 规范</code> 保持了很大的兼容性。</td>
+</tr>
+<tr>
+<td>优点</td>
+<td style="text-align:left">1. 适合在浏览器环境中异步加载模块<br> 2. 可以并行加载多个模块</td>
+<td style="text-align:left">1. 依赖就近，延迟执行 <br> 2. 可以很容易在 Node.js 中运行</td>
+</tr>
+<tr>
+<td>缺点</td>
+<td style="text-align:left">1. 提高了开发成本，代码的阅读和书写比较困难，模块定义方式的语义不顺畅<br> 2. 不符合通用的模块化思维方式，是一种妥协的实现</td>
+<td style="text-align:left">依赖 SPM 打包，模块的加载逻辑偏重</td>
+</tr>
+<tr>
+<td>实现</td>
+<td style="text-align:left"><a href="http://requirejs.org/" target="_blank" rel="external">RequireJS</a></td>
+<td style="text-align:left"><a href="http://seajs.org/" target="_blank" rel="external">SeaJS</a></td>
+</tr>
+</tbody>
+</table>
+<p>两者最明显的区别可以从以下代码中查看：  </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//AMD 推崇依赖前置，在定义模块的时候就要声明其依赖的模块</span></div><div class="line">define([<span class="string">'a'</span>, <span class="string">'b'</span>], <span class="function"><span class="keyword">function</span>(<span class="params">a, b</span>)</span>&#123;</div><div class="line">    a.doSomething();    <span class="comment">// 依赖前置，提前执行</span></div><div class="line">    b.doSomething();</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">//CMD 推崇依赖就近，只有在用到某个模块的时候再去require  </span></div><div class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">"a"</span>);</div><div class="line">    a.doSomething();</div><div class="line">    <span class="keyword">var</span> b = <span class="built_in">require</span>(<span class="string">"b"</span>);</div><div class="line">    b.doSomething();    <span class="comment">// 依赖就近，延迟执行</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p><code>CommonJS</code> (规划并标准化、致力于设计 JavaScript API)的诞生开启了 “JavaScript 模块化” 的时代。<code>CommonJS</code> 的模块提案为在服务器端的 JavaScript 模块化做出了很大的贡献，但是在浏览器下的 JavaScript 模块应用很有限。随之而来又诞生了其它前端领域的模块化方案，像 requireJS、SeaJS 等，然而这些模块化方案并不是十分适用 ，并没有从根本上解决模块化的问题。</p>
+<h3 id="32-解决方案"><a href="#3-2-解决方案" class="headerlink" title="3.2 解决方案"></a>3.2 解决方案</h3><p>前面已经为大家回顾了 JavaScript 的模块化发展历史，然而，在前端开发过程中还涉及到样式、图片、字体、HTML 模板等等众多的资源。这些资源还会以各种方言的形式存在，比如 coffeescript、 less、 sass、众多的模板库、多语言系统（i18n）等等。如果他们都可以视作模块，并且都可以通过 <code>require</code> 的方式来加载，将带来优雅的开发体验，比如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">"./style.css"</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">"./style.less"</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">"./template.jade"</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">"./image.png"</span>);</div></pre></td></tr></table></figure></p>
 <p>那么如何做到让 <code>require</code> 能加载各种资源呢？  </p>
 <h4 id="webpack"><a href="#Webpack" class="headerlink" title="Webpack"></a>Webpack</h4><blockquote>
 <p><a href="http://webpack.github.io/docs/" target="_blank" rel="external">Webpack</a> 是一个模块打包器。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。</p>
@@ -82,8 +152,8 @@
 </ul>
 <p>在 <code>Vue</code> 中，一个组件文件(<code>.Vue</code>)中，拥有<code>&lt;template&gt;</code>,<code>&lt;script&gt;</code>,<code>&lt;style&gt;</code>三个部分。每个组件中管理自己的样式、逻辑，这样在大型项目开发与维护时都起到了非常便捷的作用。  </p>
 <h2 id="4-未来的模块化"><a href="#4-未来的模块化" class="headerlink" title="4. 未来的模块化"></a>4. 未来的模块化</h2><p>说到模块化未来的发展，值得一提的便是 <a href="http://webassembly.org/" target="_blank" rel="external">WebAssembly</a>。大家都知道 <code>JavaScript</code> 是一种解释性脚本语言，导致其运行时消耗大量的性能做为代价，这也是 <code>JavaScript</code> 的瓶颈之一。<code>WebAssembly</code> 旨在解决这个问题。  </p>
-<h3 id="webassembly-是什么"><a href="#WebAssembly-是什么？" class="headerlink" title="WebAssembly 是什么？"></a>WebAssembly 是什么？</h3><blockquote>
-<p>Define a portable, size- and load-time-efficient binary format to serve as a compilation target which can be compiled to execute at native speed by taking advantage of common hardware capabilities available on a wide range of platforms, including mobile and IoT.<br>定义一个可移植，体积紧凑，加速迅捷的二进制格式为编译目标，而此二进制格式文件将可以在各种平台（包括移动设备和物联网设备）上被编译，然后发挥通用的性能以原生应用的速度运行。  </p>
+<h3 id="webassembly-是什么"><a href="#WebAssembly-是什么" class="headerlink" title="WebAssembly 是什么"></a>WebAssembly 是什么</h3><blockquote>
+<p> Define a portable, size- and load-time-efficient binary format to serve as a compilation target which can be compiled to execute at native speed by taking advantage of common hardware capabilities available on a wide range of platforms, including mobile and IoT.<br>定义一个可移植，体积紧凑，加速迅捷的二进制格式为编译目标，而此二进制格式文件将可以在各种平台（包括移动设备和物联网设备）上被编译，然后发挥通用的性能以原生应用的速度运行。</p>
 </blockquote>
 <h3 id="webassembly-的目标"><a href="#WebAssembly-的目标" class="headerlink" title="WebAssembly 的目标"></a>WebAssembly 的目标</h3><p>某乎上广传 “谷歌、苹果、谋智、微软一起再一次发明了 Silverlight ”。可以看出，大家对 <code>WebAssembly</code> 充满了信心与期待。  </p>
 <p>作为 <a href="https://www.w3.org/community/webassembly" target="_blank" rel="external">W3C WebAssembly Community Group</a> 中的一项开放标准，WebAssembly 是为下列目标而生的：</p>
