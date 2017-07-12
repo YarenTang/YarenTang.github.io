@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://prefer-tyl.site/"/>
-  <updated>2017-07-11T15:22:34.658Z</updated>
+  <updated>2017-07-12T23:14:01.976Z</updated>
   <id>http://prefer-tyl.site/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://prefer-tyl.site/2017/07/09/scala-design-patterns-1-singleton/"/>
     <id>http://prefer-tyl.site/2017/07/09/scala-design-patterns-1-singleton/</id>
     <published>2017-07-09T08:04:13.000Z</published>
-    <updated>2017-07-11T15:22:34.658Z</updated>
+    <updated>2017-07-12T23:14:01.976Z</updated>
     
     <content type="html"><![CDATA[<p>单例模式（<code>Singleton Pattern</code>）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。<br>这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。</p>
 <a id="more"></a>
@@ -41,7 +41,7 @@
 </ul>
 </li>
 <li><a href="#scala-实现">Scala 实现</a><ul>
-<li><a href="#obeject"><code>obeject</code></a></li>
+<li><a href="#object">object</a></li>
 <li><a href="#优点">优点</a></li>
 <li><a href="#缺点">缺点</a></li>
 </ul>
@@ -86,7 +86,10 @@
 <li>关于线程安全的保证，其实是通过类加载机制来保证的，我们看看 <code>INSTANCE</code> 的实例化时机，是在 <code>static</code> 块中，JVM加载类的过程显然是线程安全的。</li>
 </ul>
 <h2 id="scala-实现"><a href="#Scala-实现" class="headerlink" title="Scala 实现"></a>Scala 实现</h2><p>在 Scala 中并没有 <code>static</code> 关键字，你不用纠结太多，我们用 <code>object</code> 便能实现单例，再也不用为你的选择困难症烦恼！</p>
-<h4 id="obeject"><a href="#obeject" class="headerlink" title="obeject"></a><code>obeject</code></h4><p><code>object</code> 在 Scala 中被称作 “伴生对象” (<code>companion object</code>)。因其可与类同名存在而得名，我们可以在 <code>object</code> 中写一些常量或者工具函数等，比较典型的一点是 Scala 类的 <code>apply</code> 函数也写于 <code>obejct</code> 中（将在本系列工厂模式中详细提到，敬请期待）。看到 <code>object</code> 的介绍，大家就应该能从它身上闻到强烈的单例味。举个例子：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">object</span> <span class="title">Singleton2Scala</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(l: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">Int</span> = l.sum</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h4 id="object"><a href="#object" class="headerlink" title="object"></a>object</h4><p><code>object</code> 在 Scala 中被称作「伴生对象」 (Singleton Objects)。</p>
+<p>object 关键字创建一个新的单例类型，就像一个 class 只有一个被命名的实例。如果你熟悉 Java ,在 Scala 中声明一个 object 有些像创建了一个匿名类的实例。     ——引自  Scala 函数式编程 </p>
+<p>举个例子：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">object</span> <span class="title">Singleton2Scala</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">sum</span></span>(l: <span class="type">List</span>[<span class="type">Int</span>]): <span class="type">Int</span> = l.sum</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>测试:<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">object</span> <span class="title">Test</span> </span>&#123;</div><div class="line">  <span class="function"><span class="keyword">def</span> <span class="title">main</span></span>(args: <span class="type">Array</span>[<span class="type">String</span>]): <span class="type">Unit</span> = &#123;</div><div class="line">    <span class="type">Singleton2Scala</span>.sum(<span class="type">List</span>)</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>看起来是不是比 Java 优雅多了！  </p>
 <p>你问有没有多线程问题？是否是惰性初始化？这些都不用你来处理。</p>
@@ -126,7 +129,7 @@
 <tr>
 <td>延迟加载</td>
 <td><code>enum</code> 、 <code>double-checked locking</code></td>
-<td style="text-align:center"><code>object</code> + <code>lazy</code></td>
+<td style="text-align:center"><code>object</code> + <code>lazy</code>(内部参数延迟加载)</td>
 </tr>
 </tbody>
 </table>
