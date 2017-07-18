@@ -21,7 +21,7 @@
 </ul>
 <ul>
 <li><a href="#builder-模式的构成">Builder 模式的构成</a></li>
-<li><a href="#场景模拟">场景模拟</a></li>
+<li><a href="#如何让构造的对象有不同表示">如何让构造的对象有不同表示</a></li>
 <li><a href="#代码实现">代码实现</a></li>
 <li><a href="#总结">总结</a></li>
 </ul>
@@ -72,10 +72,10 @@
 <li>表示被构造的复杂对象，ConcreteBuilder 创建该产品的内部表示并定义它的装配过程。</li>
 <li>包含定义组成部件的类，包括将这些部件装配成最终产品的接口。</li>
 </ul>
-<p>看着是不是会有一点绕？我们来看一个例子吧！</p>
+<p>看着是不是会有一点绕？我们来模拟场景实现一个例子吧！</p>
 </li>
 </ol>
-<h5 id="场景模拟"><a href="#场景模拟" class="headerlink" title="场景模拟"></a>场景模拟</h5><p>不知道大家有没有看过「西部世界」，这部电影中的机器人展现出了高度智慧（没看过的话多啦A梦也可以吧）。</p>
+<h5 id="如何让构造的对象有不同表示"><a href="#如何让构造的对象有不同表示" class="headerlink" title="如何让构造的对象有不同表示"></a>如何让构造的对象有不同表示</h5><p>不知道大家有没有看过「西部世界」，这部电影中的机器人展现出了高度智慧（没看过的话多啦A梦也可以吧）。</p>
 <p>如果我们能够购买到这样的机器人，过程应该是这样的：</p>
 <ol>
 <li>我们（<code>Client</code>）和出厂商（<code>Director</code>）联系，告诉出厂商需要什么类型的机器人（<code>Product</code>)<br>；</li>
@@ -145,7 +145,7 @@
 <li>当构造过程必须允许被构造的对象有不同的表示时。</li>
 </ul>
 <p><a href="https://github.com/YarenTang/Design_Patterns_Examples/tree/master/src/Builder" target="_blank" rel="external">源码链接</a><br>如有错误和讲述不恰当的地方还请指出，不胜感激！</p>
-</div></article></div></main><footer><div class="paginator"><a href="/2017/07/09/scala-design-patterns-1-singleton/" class="prev">PREV</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'prefer-tyl-site';
+</div></article></div></main><footer><div class="paginator"><a href="/2017/07/09/scala-design-patterns-1-singleton/" class="prev">上一篇</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'prefer-tyl-site';
 var disqus_identifier = '2017/07/18/scala-design-patterns-2-builder/';
 var disqus_title = 'Scala 与设计模式（二）：Builder 创建者模式';
 var disqus_url = 'http://prefer-tyl.site/2017/07/18/scala-design-patterns-2-builder/';
