@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://prefer-tyl.site/2017/07/31/scala-design-patterns-3-prototype/</loc>
+    <loc>http://prefer-tyl.site/2017/08/13/scala-design-patterns-4-factory/</loc>
     
-    <lastmod>2017-08-02T12:59:09.173Z</lastmod>
+    <lastmod>2017-08-13T15:58:10.479Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://prefer-tyl.site/2017/07/27/scala-design-patterns-3-prototype/</loc>
+    
+    <lastmod>2017-08-10T12:18:00.002Z</lastmod>
     
   </url>
   
