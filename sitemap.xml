@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://prefer-tyl.site/2017/11/05/kotlin-0/</loc>
+    
+    <lastmod>2017-11-05T16:19:50.360Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://prefer-tyl.site/2017/08/19/scala-design-patterns-4-factory/</loc>
     
     <lastmod>2017-08-20T03:35:29.373Z</lastmod>
