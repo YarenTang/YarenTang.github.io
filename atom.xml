@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://prefer-tyl.site/"/>
-  <updated>2017-11-29T16:31:25.166Z</updated>
+  <updated>2017-11-29T16:42:12.649Z</updated>
   <id>http://prefer-tyl.site/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>kotlin 类型结构设计</title>
-    <link href="http://prefer-tyl.site/2017/11/30/kotlin-2/"/>
-    <id>http://prefer-tyl.site/2017/11/30/kotlin-2/</id>
+    <title>Dive Into Kotlin（二）：kotlin 类型结构设计</title>
+    <link href="http://prefer-tyl.site/2017/11/30/kotlin-1/"/>
+    <id>http://prefer-tyl.site/2017/11/30/kotlin-1/</id>
     <published>2017-11-30T00:04:13.000Z</published>
-    <updated>2017-11-29T16:31:25.166Z</updated>
+    <updated>2017-11-29T16:42:12.649Z</updated>
     
     <content type="html"><![CDATA[<p>无论在静态语言还是动态语言中，「类型系统」都起到了至关重要的作用。<br><a id="more"></a></p>
 <h4 id="类型系统简介"><a href="#类型系统简介" class="headerlink" title="类型系统简介"></a>类型系统简介</h4><blockquote>
