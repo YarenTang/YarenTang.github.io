@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://prefer-tyl.site/"/>
-  <updated>2017-12-01T01:44:32.612Z</updated>
+  <updated>2017-12-01T01:46:56.196Z</updated>
   <id>http://prefer-tyl.site/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://prefer-tyl.site/2017/12/01/kotlin-1/"/>
     <id>http://prefer-tyl.site/2017/12/01/kotlin-1/</id>
     <published>2017-12-01T04:00:00.000Z</published>
-    <updated>2017-12-01T01:44:32.612Z</updated>
+    <updated>2017-12-01T01:46:56.196Z</updated>
     
     <content type="html"><![CDATA[<p>无论在静态语言还是动态语言中，「类型系统」都起到了至关重要的作用。<br><a id="more"></a></p>
 <h4 id="一-类型系统简介"><a href="#一、类型系统简介" class="headerlink" title="一、类型系统简介"></a>一、类型系统简介</h4><blockquote>
@@ -112,7 +112,7 @@
 <p><code>Unit</code> 并没什么特别之处。就像任何其他类型一样，它是 <code>Any</code> 的子类型，而 <code>Unit?</code> 是 <code>Any?</code> 的子类型。</p>
 <center><img src="/images/2017/11/kotlin-unit-1.png" alt="Kotlin types"></center>
 
-<p>然而 <code>Unit?</code> 类型却是一个奇怪的特殊例子，这是 Kotlin 的类型系统一致性的结果。<code>Unit?</code> 类型只有两个值：<code>Unit</code> 单例和 <code>null</code>。我从来没有发现需要明确使用 <code>Unit?</code> 类型的地方，但是在类型系统中没有特殊的 void 这一事实，使得处理各种函数泛型变得更加容易。  </p>
+<p>然而 <code>Unit?</code> 类型却是一个奇怪的特殊例子，这是 Kotlin 的类型系统一致性的结果。<code>Unit?</code> 类型只有两个值：<code>Unit</code> 单例和 <code>null</code>。我暂时还没发现使用 <code>Unit?</code> 类型的地方，但是在类型系统中没有特殊的 void 这一事实，使得处理各种函数泛型变得更加容易。  </p>
 <h3 id="nothing"><a href="#Nothing" class="headerlink" title="Nothing"></a>Nothing</h3><p>在 Kotlin 类型层级结构的最底层是 <code>Nothing</code> 类型。  </p>
 <center><img src="/images/2017/11/kotlin-nothing-1.png" alt="Kotlin types"></center>  
 
