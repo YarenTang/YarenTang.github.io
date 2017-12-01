@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://prefer-tyl.site/"/>
-  <updated>2017-12-01T01:54:30.334Z</updated>
+  <updated>2017-12-01T02:00:42.087Z</updated>
   <id>http://prefer-tyl.site/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://prefer-tyl.site/2017/12/01/kotlin-1/"/>
     <id>http://prefer-tyl.site/2017/12/01/kotlin-1/</id>
     <published>2017-12-01T04:00:00.000Z</published>
-    <updated>2017-12-01T01:54:30.334Z</updated>
+    <updated>2017-12-01T02:00:42.087Z</updated>
     
     <content type="html"><![CDATA[<p>无论在静态语言还是动态语言中，「类型系统」都起到了至关重要的作用。<br><a id="more"></a></p>
 <h4 id="一-类型系统简介"><a href="#一、类型系统简介" class="headerlink" title="一、类型系统简介"></a>一、类型系统简介</h4><blockquote>
@@ -77,7 +77,7 @@
 <p>正好也符合我们的日常理解：“香蕉是水果，水果不是香蕉。”</p>
 <p>另外，Kotlin 把 Java 方法参数和返回类型中用到的 <code>Object</code> 类型看作 <code>Any</code>(更确切地是当做「平台类型」)。当 Kotlin 函数函数中使用 <code>Any</code> 时，它会被编译成 Java 字节码中的 <code>Object</code>。</p>
 <blockquote>
-<p>Hint: 平台类型本质上就是 Kotlin 不知道可控性信息的类型。</p>
+<p>Hint: 平台类型本质上就是 Kotlin 不知道可控性信息的类型 —— 所有 Java 引用类型在 Kotlin 中都表现为平台类型。</p>
 </blockquote>
 <p>上面提到：在 Kotlin 中， <strong><code>Any</code> 是所有 非空类型 的超类</strong>。<br>你可能会有疑问： <code>null</code> 类型的父类是什么呢？</p>
 <h3 id="可空类型nullable-types-int-boolean-及其他"><a href="#可空类型-Nullable-Types-——-Int？-Boolean？-及其他" class="headerlink" title="可空类型(Nullable Types) —— Int？ Boolean？ 及其他"></a>可空类型(Nullable Types) —— <code>Int？</code> <code>Boolean？</code> 及其他</h3><p>许多编程语言中最常见的陷阱之一是访问空引用的成员，导致空引用异常。在 Java 中，这被称作 <code>NullPointerException</code> 或简称 <code>NPE</code>。</p>

@@ -53,7 +53,7 @@
 <p>正好也符合我们的日常理解：“香蕉是水果，水果不是香蕉。”</p>
 <p>另外，Kotlin 把 Java 方法参数和返回类型中用到的 <code>Object</code> 类型看作 <code>Any</code>(更确切地是当做「平台类型」)。当 Kotlin 函数函数中使用 <code>Any</code> 时，它会被编译成 Java 字节码中的 <code>Object</code>。</p>
 <blockquote>
-<p>Hint: 平台类型本质上就是 Kotlin 不知道可控性信息的类型。</p>
+<p>Hint: 平台类型本质上就是 Kotlin 不知道可控性信息的类型 —— 所有 Java 引用类型在 Kotlin 中都表现为平台类型。</p>
 </blockquote>
 <p>上面提到：在 Kotlin 中， <strong><code>Any</code> 是所有 非空类型 的超类</strong>。<br>你可能会有疑问： <code>null</code> 类型的父类是什么呢？</p>
 <h3 id="可空类型nullable-types-int-boolean-及其他"><a href="#可空类型-Nullable-Types-——-Int？-Boolean？-及其他" class="headerlink" title="可空类型(Nullable Types) —— Int？ Boolean？ 及其他"></a>可空类型(Nullable Types) —— <code>Int？</code> <code>Boolean？</code> 及其他</h3><p>许多编程语言中最常见的陷阱之一是访问空引用的成员，导致空引用异常。在 Java 中，这被称作 <code>NullPointerException</code> 或简称 <code>NPE</code>。</p>
@@ -126,7 +126,7 @@
 <li><a href="http://natpryce.com/articles/000818.html" target="_blank" rel="external">A Whirlwind Tour of the Kotlin Type Hierarchy</a></li>
 <li><a href="https://book.douban.com/subject/27093660/" target="_blank" rel="external"> 《Kotlin in Action》</a></li>
 </ul>
-</div></article></div></main><footer><div class="paginator"><a href="/2017/11/20/scala-design-patterns-5-adapter/" class="prev">PREV</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'prefer-tyl-site';
+</div></article></div></main><footer><div class="paginator"><a href="/2017/11/20/scala-design-patterns-5-adapter/" class="prev">上一篇</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'prefer-tyl-site';
 var disqus_identifier = '2017/12/01/kotlin-1/';
 var disqus_title = 'Dive Into Kotlin（二）：kotlin 类型结构设计';
 var disqus_url = 'http://prefer-tyl.site/2017/12/01/kotlin-1/';
