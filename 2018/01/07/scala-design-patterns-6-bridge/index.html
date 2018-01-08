@@ -29,15 +29,11 @@
 <ul>
 <li><a href="#概念">概念</a></li>
 <li><a href="#java-实现">Java 实现</a><ul>
-<li><a href="#优缺点">优缺点</a><ul>
-<li><a href="#优点">优点</a></li>
-<li><a href="#缺点">缺点:</a></li>
-</ul>
-</li>
+<li><a href="#优缺点">优缺点</a></li>
 <li><a href="#适用场景">适用场景</a></li>
-<li><a href="#scala-版本">Scala 版本</a></li>
 </ul>
 </li>
+<li><a href="#scala-版本">Scala 版本</a></li>
 </ul>
 <!-- tocstop -->
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>桥接模式的定义比较简洁：</p>
@@ -60,12 +56,13 @@
 <p>此时，如需添加新的颜色或形状，我们只用实现一个桥接口或者继承一个抽象类即可。</p>
 <h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>以上，相信你对桥接模式已经有所了解。</p>
 <p>再我们来看看它的优缺点。  </p>
-<h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
+<p><strong>优点</strong></p>
+<ol>
 <li>抽象和实现的分离。  </li>
 <li>优秀的扩展能力。  </li>
 <li>实现细节对客户透明。  </li>
 </ol>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点:"></a>缺点:</h4><p>桥接模式需要建立在你对系统充分的认知下，需要我们识别出两个合理的变化维度，所以适用范围受到限制。</p>
+<p><strong>缺点*</strong><br>桥接模式需要建立在你对系统充分的认知下，需要我们识别出两个合理的变化维度，所以适用范围受到限制。</p>
 <p>所以你什么时候该使用桥接模式呢？</p>
 <h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ol>
 <li><p>正如我们上方的例子，如果一个场景存在两个独立变化的维度，且这两个维度需要频繁扩展或变动时，我们优先考虑桥接模式。</p>
@@ -77,14 +74,14 @@
 <li><p><a href="https://stackoverflow.com/questions/319728/when-do-you-use-the-bridge-pattern-how-is-it-different-from-adapter-pattern" target="_blank" rel="external">其他</a>。</p>
 </li>
 </ol>
-<h3 id="scala-版本"><a href="#Scala-版本" class="headerlink" title="Scala 版本"></a>Scala 版本</h3><p>在 Scala 中，桥接模式的实现与 Java 大同小异，我们只需将接口关键字改为 <code>trait</code>：</p>
+<h2 id="scala-版本"><a href="#Scala-版本" class="headerlink" title="Scala 版本"></a>Scala 版本</h2><p>在 Scala 中，桥接模式的实现与 Java 大同小异，我们只需将接口关键字改为 <code>trait</code>：</p>
 <p>颜色接口：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">trait</span> <span class="title">Color</span> </span>&#123;</div><div class="line">   <span class="function"><span class="keyword">def</span> <span class="title">drawShape</span></span>(`<span class="class"><span class="keyword">type</span>`</span>: <span class="type">String</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>颜色类：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Red</span> <span class="keyword">extends</span> <span class="title">Color</span></span>&#123;</div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">drawShape</span></span>(`<span class="class"><span class="keyword">type</span>`</span>: <span class="type">String</span>) = println(<span class="string">s"Red <span class="subst">$&#123;`type`&#125;</span> is drawn"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Blue</span> <span class="keyword">extends</span> <span class="title">Color</span></span>&#123;</div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">drawShape</span></span>(`<span class="class"><span class="keyword">type</span>`</span>: <span class="type">String</span>) = println(<span class="string">s"Blue <span class="subst">$&#123;`type`&#125;</span> is drawn"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Yellow</span> <span class="keyword">extends</span> <span class="title">Color</span></span>&#123;</div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">drawShape</span></span>(`<span class="class"><span class="keyword">type</span>`</span>: <span class="type">String</span>) = println(<span class="string">s"Yellow <span class="subst">$&#123;`type`&#125;</span> is drawn"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>形状抽象类以及实现类：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span>(<span class="params">color: <span class="type">Color</span></span>) </span>&#123;</div><div class="line">   <span class="function"><span class="keyword">def</span> <span class="title">draw</span></span>()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShapeI</span>(<span class="params">color: <span class="type">Color</span></span>) <span class="keyword">extends</span> <span class="title">Shape</span>(<span class="params">color</span>)</span>&#123;</div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">draw</span></span>(): <span class="type">Unit</span> = color.drawShape(<span class="string">"ShapeI"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShapeJ</span>(<span class="params">color: <span class="type">Color</span></span>) <span class="keyword">extends</span> <span class="title">Shape</span>(<span class="params">color</span>)</span>&#123;</div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">draw</span></span>(): <span class="type">Unit</span> = color.drawShape(<span class="string">"ShapeJ"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">....</div></pre></td></tr></table></figure></p>
 <p>也许部分同学会问：为什么这里抽象类可以用 <code>trait</code> 代替吗？这样扩展性看起来会更好？具体还是参考这里吧：<a href="https://stackoverflow.com/questions/1991042/what-is-the-advantage-of-using-abstract-classes-instead-of-traits" target="_blank" rel="external">abstract class 比 trait 好在哪里？</a></p>
 <p>测试：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">object</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">App</span></span>&#123;</div><div class="line">   <span class="keyword">new</span> <span class="type">ShapeI</span>(<span class="keyword">new</span> <span class="type">Blue</span>).draw()</div><div class="line">   <span class="keyword">new</span> <span class="type">ShapeJ</span>(<span class="keyword">new</span> <span class="type">Red</span>).draw()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><a href="https://github.com/YarenTang/Design_Patterns_Examples/tree/master/src/Adapter" target="_blank" rel="external">源码链接</a><br>如有错误和讲述不恰当的地方还请指出，不胜感激！</p>
-</div></article></div></main><footer><div class="paginator"><a href="/2017/12/01/kotlin-1/" class="prev">上一篇</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'prefer-tyl-site';
+</div></article></div></main><footer><div class="paginator"><a href="/2017/12/01/kotlin-1/" class="prev">PREV</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'prefer-tyl-site';
 var disqus_identifier = '2018/01/07/scala-design-patterns-6-bridge/';
 var disqus_title = 'Scala 与设计模式（六）：Bridge 桥接模式';
 var disqus_url = 'http://prefer-tyl.site/2018/01/07/scala-design-patterns-6-bridge/';
