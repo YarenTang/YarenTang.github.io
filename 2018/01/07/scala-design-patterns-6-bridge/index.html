@@ -62,7 +62,7 @@
 <li>优秀的扩展能力。  </li>
 <li>实现细节对客户透明。  </li>
 </ol>
-<p><strong>缺点*</strong><br>桥接模式需要建立在你对系统充分的认知下，需要我们识别出两个合理的变化维度，所以适用范围受到限制。</p>
+<p><strong>缺点</strong><br>桥接模式需要建立在你对系统充分的认知下，需要我们识别出两个合理的变化维度，所以适用范围受到限制。</p>
 <p>所以你什么时候该使用桥接模式呢？</p>
 <h3 id="适用场景"><a href="#适用场景" class="headerlink" title="适用场景"></a>适用场景</h3><ol>
 <li><p>正如我们上方的例子，如果一个场景存在两个独立变化的维度，且这两个维度需要频繁扩展或变动时，我们优先考虑桥接模式。</p>
@@ -81,7 +81,7 @@
 <p>也许部分同学会问：为什么这里抽象类可以用 <code>trait</code> 代替吗？这样扩展性看起来会更好？具体还是参考这里吧：<a href="https://stackoverflow.com/questions/1991042/what-is-the-advantage-of-using-abstract-classes-instead-of-traits" target="_blank" rel="external">abstract class 比 trait 好在哪里？</a></p>
 <p>测试：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">object</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">App</span></span>&#123;</div><div class="line">   <span class="keyword">new</span> <span class="type">ShapeI</span>(<span class="keyword">new</span> <span class="type">Blue</span>).draw()</div><div class="line">   <span class="keyword">new</span> <span class="type">ShapeJ</span>(<span class="keyword">new</span> <span class="type">Red</span>).draw()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><a href="https://github.com/YarenTang/Design_Patterns_Examples/tree/master/src/Adapter" target="_blank" rel="external">源码链接</a><br>如有错误和讲述不恰当的地方还请指出，不胜感激！</p>
-</div></article></div></main><footer><div class="paginator"><a href="/2017/12/01/kotlin-1/" class="prev">PREV</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'prefer-tyl-site';
+</div></article></div></main><footer><div class="paginator"><a href="/2017/12/01/kotlin-1/" class="prev">上一篇</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'prefer-tyl-site';
 var disqus_identifier = '2018/01/07/scala-design-patterns-6-bridge/';
 var disqus_title = 'Scala 与设计模式（六）：Bridge 桥接模式';
 var disqus_url = 'http://prefer-tyl.site/2018/01/07/scala-design-patterns-6-bridge/';
