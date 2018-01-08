@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://prefer-tyl.site/"/>
-  <updated>2018-01-08T01:14:49.562Z</updated>
+  <updated>2018-01-08T01:38:46.746Z</updated>
   <id>http://prefer-tyl.site/</id>
   
   <author>
@@ -20,32 +20,32 @@
     <link href="http://prefer-tyl.site/2018/01/07/scala-design-patterns-6-bridge/"/>
     <id>http://prefer-tyl.site/2018/01/07/scala-design-patterns-6-bridge/</id>
     <published>2018-01-07T15:00:00.000Z</published>
-    <updated>2018-01-08T01:14:49.562Z</updated>
+    <updated>2018-01-08T01:38:46.746Z</updated>
     
     <content type="html"><![CDATA[<p>Bridge 桥接模式是一种对象结构型模式，又称为柄体(Handle and Body)模式或接口(Interface)模式。</p>
 <a id="more"></a>
 <p>相信大家都玩过「俄罗斯方块」吧。</p>
 <center><img src="/images/2018/01/traditional-tetromino.jpg" width="300px"></center>
 
-<p>小罗年幼时最喜欢玩的就是俄罗斯方块。作为一个有情怀的程序员，小罗决定尝试实现这款游戏。  </p>
+<p>小罗年幼时最喜欢玩的就是俄罗斯方块。作为一个有情怀的程序员，小罗决定尝试实现这款游戏。</p>
 <p>玩过俄罗斯方块的人都会知道，俄罗斯方块由七种简单形状组成：</p>
 <ul>
 <li>I、J、L、O、S、T、Z</li>
 </ul>
 <center><img src="/images/2018/01/modern-tetromino.jpg" width="300px"></center>
 
-<p>小罗了然于心，抄起手中的键盘就创建了七个类。  </p>
+<p>小罗了然于心，抄起手中的键盘就创建了七个类。</p>
 <p>黑色过于单调，所以小罗又选了三种颜色准备为这些方块着色：</p>
 <ul>
 <li>Yellow</li>
-<li>Blue  </li>
+<li>Blue</li>
 <li>Red</li>
 </ul>
-<p>要实现这样的需求，最 low 的方法就是<strong>为每种形状创造所有颜色的版本</strong>。  </p>
+<p>要实现这样的需求，最 low 的方法就是<strong>为每种形状创造所有颜色的版本</strong>。</p>
 <p>如果采用这种方案，双方之间处于强链接，类之间关联性极强，如要进行扩展，必然导致类结构急剧膨胀：</p>
-<center><img src="/images/2018/01/bridge-old-java-design.png" width="600px"></center>  
+<center><img src="/images/2018/01/bridge-old-java-design.png" width="600px"></center>
 
-<p>如果仅用继承实现，我们会创造至少 3 * 7 = 21 个类。  </p>
+<p>如果仅用继承实现，我们会创造至少 3 * 7 = 21 个类。</p>
 <p>当我们想增加 1 种形状（或颜色）的时候，就需要新增 3 （或 7）个类。</p>
 <p><strong>数量爆炸的类 == 差劲的扩展能力 == 爆炸的维护成本</strong>！</p>
 <p>那有没有环保一点的方式呢？让我们来看看「桥接模式」是怎么解决的。</p>
@@ -58,6 +58,7 @@
 </ul>
 </li>
 <li><a href="#scala-版本">Scala 版本</a></li>
+<li><a href="#总结">总结</a></li>
 </ul>
 <!-- tocstop -->
 <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>桥接模式的定义比较简洁：</p>
@@ -65,26 +66,34 @@
 <p>把事物对象和其具体行为、具体特征分离开来，使它们可以各自独立的变化。 —— wikipedia</p>
 </blockquote>
 <p>换言之，即 <strong>抽象化与实现化解耦，使得二者可以独立变化</strong>。</p>
-<h2 id="java-实现"><a href="#Java-实现" class="headerlink" title="Java 实现"></a>Java 实现</h2><p>根据定义，我们可以根据实际需求对形状和颜色进行组合。</p>
+<p>根据 GOF 提到的，桥接模式由四部分组成：</p>
+<ol>
+<li><strong>抽象类</strong>：定义了一个实现类接口类型的对象并可以维护该对象。</li>
+<li><strong>扩充抽象类</strong>：扩充由抽象类定义的接口，它实现了在抽象类中定义的抽象业务方法，在扩充抽象类中可以调用在实现类接口中定义的业务方法。</li>
+<li><strong>实现类接口</strong>：定义了实现类的接口，实现类接口仅提供基本操作，而抽象类定义的接口可能会做更多更复杂的操作。</li>
+<li><strong>具体实现类</strong>：实现了实现类接口并且具体实现它，在不同的具体实现类中提供基本操作的不同实现，在程序运行时，具体实现类对象将替换其父类对象，提供给客户端具体的业务操作方法。</li>
+</ol>
+<h2 id="java-实现"><a href="#Java-实现" class="headerlink" title="Java 实现"></a>Java 实现</h2><p>在使用桥接模式时，我们首先应该识别出一个类所具有的两个独立变化的维度，将它们设计为两个独立的继承等级结构，为两个维度都提供抽象层，并建立抽象耦合。</p>
+<p>即，我们需要根据实际需求对形状和颜色进行组合。</p>
 <p>既然是组合，接口肯定是少不了的，先创建颜色接口（<strong>这里也称作「桥接口」</strong>）：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Color</span> </span>&#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawShape</span><span class="params">(String type)</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>以及各种颜色类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Red</span> <span class="keyword">implements</span> <span class="title">Color</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawShape</span><span class="params">(String type)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Red "</span> + type +<span class="string">" is drawn"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Yellow</span> <span class="keyword">implements</span> <span class="title">Color</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawShape</span><span class="params">(String type)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Yellow "</span> + type +<span class="string">" is drawn"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Blue</span> <span class="keyword">implements</span> <span class="title">Color</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">drawShape</span><span class="params">(String type)</span> </span>&#123;</div><div class="line">        System.out.println(<span class="string">"Blue "</span> + type +<span class="string">" is drawn"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>然后，我们创建最重要的形状抽象类：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Bridge.Java.Color.Color;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    Color color;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setColor</span><span class="params">(Bridge.Java.Color.Color color)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.color = color;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span></span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>同样创建具体的方块：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShapeI</span> <span class="keyword">extends</span> <span class="title">Shape</span> </span>&#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">draw</span><span class="params">()</span> </span>&#123;</div><div class="line">        color.drawShape(<span class="string">"ShapeI"</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>测试：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Color red = <span class="keyword">new</span> Red();</div><div class="line">Shape shapeI = <span class="keyword">new</span> ShapeI();</div><div class="line"><span class="comment">// 红色的 I</span></div><div class="line">shapeI.setColor(red);</div><div class="line">shapeI.draw();</div><div class="line"></div><div class="line"><span class="comment">// 红色的 L</span></div><div class="line">Shape shapeL = <span class="keyword">new</span> ShapeJ();</div><div class="line">shapeL.setColor(red);</div><div class="line">shapeL.draw();</div></pre></td></tr></table></figure></p>
-<p>以上，我们将「形状」和「颜色」解耦。  </p>
-<p><img src="/images/2018/01/bridge-pattern-2.png" alt="bridge-pattern">  </p>
-<p>Hint: 如果你依旧有所疑惑，请回顾最开始的定义：  </p>
+<p>以上，我们将「形状」和「颜色」解耦。</p>
+<p><img src="/images/2018/01/bridge-pattern-2.png" alt="bridge-pattern"></p>
+<p>Hint: 如果你依旧有所疑惑，请回顾最开始的定义：</p>
 <blockquote>
 <p>把事物对象和其具体行为、具体特征分离开来，使它们可以各自独立的变化。</p>
 </blockquote>
 <p>此时，如需添加新的颜色或形状，我们只用实现一个桥接口或者继承一个抽象类即可。</p>
 <h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>以上，相信你对桥接模式已经有所了解。</p>
-<p>再我们来看看它的优缺点。  </p>
+<p>再我们来看看它的优缺点。</p>
 <p><strong>优点</strong></p>
 <ol>
-<li>抽象和实现的分离。  </li>
-<li>优秀的扩展能力。  </li>
-<li>实现细节对客户透明。  </li>
+<li>抽象和实现的分离。</li>
+<li>优秀的扩展能力。</li>
+<li>实现细节对客户透明。</li>
 </ol>
 <p><strong>缺点</strong><br>桥接模式需要建立在你对系统充分的认知下，需要我们识别出两个合理的变化维度，所以适用范围受到限制。</p>
 <p>所以你什么时候该使用桥接模式呢？</p>
@@ -104,6 +113,7 @@
 <p>形状抽象类以及实现类：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Shape</span>(<span class="params">color: <span class="type">Color</span></span>) </span>&#123;</div><div class="line">   <span class="function"><span class="keyword">def</span> <span class="title">draw</span></span>()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShapeI</span>(<span class="params">color: <span class="type">Color</span></span>) <span class="keyword">extends</span> <span class="title">Shape</span>(<span class="params">color</span>)</span>&#123;</div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">draw</span></span>(): <span class="type">Unit</span> = color.drawShape(<span class="string">"ShapeI"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">ShapeJ</span>(<span class="params">color: <span class="type">Color</span></span>) <span class="keyword">extends</span> <span class="title">Shape</span>(<span class="params">color</span>)</span>&#123;</div><div class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">draw</span></span>(): <span class="type">Unit</span> = color.drawShape(<span class="string">"ShapeJ"</span>)</div><div class="line">&#125;</div><div class="line"></div><div class="line">....</div></pre></td></tr></table></figure></p>
 <p>也许部分同学会问：为什么这里抽象类可以用 <code>trait</code> 代替吗？这样扩展性看起来会更好？具体还是参考这里吧：<a href="https://stackoverflow.com/questions/1991042/what-is-the-advantage-of-using-abstract-classes-instead-of-traits" target="_blank" rel="external">abstract class 比 trait 好在哪里？</a></p>
 <p>测试：<br><figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">object</span> <span class="title">Test</span> <span class="keyword">extends</span> <span class="title">App</span></span>&#123;</div><div class="line">   <span class="keyword">new</span> <span class="type">ShapeI</span>(<span class="keyword">new</span> <span class="type">Blue</span>).draw()</div><div class="line">   <span class="keyword">new</span> <span class="type">ShapeJ</span>(<span class="keyword">new</span> <span class="type">Red</span>).draw()</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>桥接模式用一种巧妙的方式处理多层继承存在的问题，用抽象关联取代了传统的多层继承，将类之间的静态继承关系转换为动态的对象组合关系，使得系统更加灵活，并易于扩展，同时有效控制了系统中类的个数。在系统设计初期，合理利用桥接模式，会让系统更加优雅。</p>
 <p><a href="https://github.com/YarenTang/Design_Patterns_Examples/tree/master/src/Adapter" target="_blank" rel="external">源码链接</a><br>如有错误和讲述不恰当的地方还请指出，不胜感激！</p>
 ]]></content>
     
@@ -1138,14 +1148,14 @@
 <p>举个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Module = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> _private = <span class="string">"safe now"</span>;</div><div class="line">    <span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(_private)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">foo</span>: foo</div><div class="line">    &#125;</div><div class="line">&#125;)()</div><div class="line"></div><div class="line">Module.foo();</div><div class="line">Module._private; <span class="comment">// undefined</span></div></pre></td></tr></table></figure></p>
 <p>我们可以调用定义的方法，但是不能调用定义的属性。这样的模式使得变量冲突降到最低，并且能够控制暴露的方法(类似于接口）。这便是现代模块实现的基石！  </p>
 <h3 id="314-script-loader"><a href="#3-1-4-Script-Loader" class="headerlink" title="3.1.4 Script Loader"></a>3.1.4 Script Loader</h3><p>最原始的 JS 加载方法就是在 Html 头文件中通过 Script 标签直接引入，类似下面这样：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"http://remote.tld/jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"local/plugin1.jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"local/plugin2.jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"local/init.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">	initMyPage();</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"http://remote.tld/jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"local/plugin1.jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"local/plugin2.jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"local/init.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">	initMyPage();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
 <p>初学者可能会有疑问，全都写在一个文件中看着不是挺方便的吗？<br>首先以上列举的可能只是实际项目中的一小部分，其次不要忽视 <code>&lt;script&gt;</code> 的一个特点：<code>并行加载，顺序执行</code>，这要求开发者需要按照严格的读取顺序，并且很有可能会阻塞阻止文档渲染(<code>async</code> 新特性在 HTML5 中才提出)。文件少的时候写起来会很方便，一旦项目变复杂缺点就会暴露无疑：<strong>难以维护，依赖模糊，请求过多</strong> 。  </p>
 <h4 id="labjs"><a href="#LABjs" class="headerlink" title="LABjs"></a>LABjs</h4><p>为了解决依赖模糊，我们迫切需要一个加载器（<code>Loader</code>）最先出现在开发者视野中的 <code>Loader</code> 应该是 <a href="https://github.com/getify/LABjs]" target="_blank" rel="external"><code>LABjs</code></a>(2009)（ HTML5 发布才有了 <code>async</code> 特性）</p>
 <blockquote>
 <p>LABjs 的核心是 LAB（Loading and Blocking）：Loading 指异步并行加载，Blocking 是指同步等待执行。  </p>
 </blockquote>
 <p>通过使用 LABjs ,上方代码就可以变成这样：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"LAB.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">  $LAB</div><div class="line">  .script(<span class="string">"http://remote.tld/jquery.js"</span>).wait()<span class="comment">//`.wait` 表示加载后立即运行</span></div><div class="line">  .script(<span class="string">"/local/plugin1.jquery.js"</span>)</div><div class="line">  .script(<span class="string">"/local/plugin2.jquery.js"</span>).wait()</div><div class="line">  .script(<span class="string">"/local/init.js"</span>).wait(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      initMyPage();</div><div class="line">  &#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"LAB.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  $LAB</div><div class="line">  .script(<span class="string">"http://remote.tld/jquery.js"</span>).wait()<span class="comment">//`.wait` 表示加载后立即运行</span></div><div class="line">  .script(<span class="string">"/local/plugin1.jquery.js"</span>)</div><div class="line">  .script(<span class="string">"/local/plugin2.jquery.js"</span>).wait()</div><div class="line">  .script(<span class="string">"/local/init.js"</span>).wait(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      initMyPage();</div><div class="line">  &#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
 <p>当然同一时期风靡的还有类库模块化框架 <a href="https://yuilibrary.com/" target="_blank" rel="external">YUI</a>，大家可自行查阅。</p>
 <h4 id="commonjs"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h4><p>在开发者们拼命为浏览器兼容等问题绞尽脑汁的时候，CommonJS 横空出世！<br>服务器端的 <code>Node.js</code> 遵循 <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS规范</a>，该规范的核心思想是允许模块通过 <code>require</code> 方法来同步加载所要依赖的其他模块，然后通过 <code>exports</code> 或 <code>module.exports</code> 来导出需要暴露的接口。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">"module"</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">"../file.js"</span>);</div><div class="line">exports.doStuff = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"><span class="built_in">module</span>.exports = someValue;</div></pre></td></tr></table></figure>
