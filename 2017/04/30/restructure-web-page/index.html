@@ -1,4 +1,216 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 页面重构应该遵循的基本原则和规范 · Prefert</title><meta name="description" content="页面重构应该遵循的基本原则和规范 - Prefert"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/avator.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://prefer-tyl.site/atom.xml" title="Prefert"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/avator.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/YarenTang" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><div class="post"><article class="post-block"><h1 class="post-title">页面重构应该遵循的基本原则和规范</h1><div class="post-info">Apr 30, 2017</div><div class="post-content"><p>简单来说，页面重构就是：将设计稿转换成 WEB 页面。在多人协同完成一个大型工程时，必要的原则与规范不仅能加快开发效率，更能使工程有着更好的体系结构，方便维护…</p>
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="页面重构应该遵循的基本原则和规范"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Prefert">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/avator.jpg?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://prefer-tyl.site/2017/04/30/restructure-web-page/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65933410-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> 页面重构应该遵循的基本原则和规范 - Prefert </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Prefert</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="https://github.com/YarenTang">
+        <li class="mobile-menu-item">
+          
+          
+            GitHub
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Prefert</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="https://github.com/YarenTang">
+            
+            
+              GitHub
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          页面重构应该遵循的基本原则和规范
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-04-30
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-什么是页面重构"><span class="toc-text">1. 什么是页面重构？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-基本原则和规范"><span class="toc-text">2. 基本原则和规范</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#21-常用规范"><span class="toc-text">2.1 常用规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#22-语义化-ampamp-seo"><span class="toc-text">2.2 语义化 && SEO</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#221-什么是语义化"><span class="toc-text">2.2.1 什么是语义化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#222-为什么要让页面语义化"><span class="toc-text">2.2.2 为什么要让页面语义化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#223-html-语义化"><span class="toc-text">2.2.3 HTML 语义化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#224-css-命名语义化"><span class="toc-text">2.2.4 CSS 命名语义化</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#23-样式抽离-ampamp-组件复用"><span class="toc-text">2.3 样式抽离 && 组件复用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-总结"><span class="toc-text">3. 总结</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>简单来说，页面重构就是：将设计稿转换成 WEB 页面。在多人协同完成一个大型工程时，必要的原则与规范不仅能加快开发效率，更能使工程有着更好的体系结构，方便维护…</p>
 <a id="more"></a>
 <!-- toc -->
 <ul>
@@ -133,12 +345,192 @@
 <p>安装 loader :<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install css-loader style-loader</div></pre></td></tr></table></figure></p>
 <p>在 <a href="https://vuefe.cn/v2/guide/index.html" target="_blank" rel="external">Vue.js</a> 中，我们可以将 <code>HTML</code>、<code>CSS</code>、<code>JavaScript</code> 都写于一个 <code>.vue</code> 格式的文件中，一个文件便对应一个组件，并且可以在其他组件中很方便的引入。  </p>
 <h2 id="3-总结"><a href="#3-总结" class="headerlink" title="3. 总结"></a>3. 总结</h2><p>当然，除了以上几点，我们需要遵循的原则和规范还很多。总的来说，页面重构时，在规范编码的基础上我们首先考虑的因素便是语义化：HTML 标签语义化、CSS 命名语义化等等。语义化的最终目的就是使得人与机器对页面识别度更高。其次，为了方便协作与后期维护，我们应该考虑组件复用、样式抽离，或者说模块化等。原则和规范并不总是一成不变的，随着前端技术的快速发展，高效、便于协作与维护的方式便是最佳原则与规范。</p>
-</div></article></div></main><footer><div class="paginator"><a href="/2017/06/27/front-page-modular-history/" class="next">NEXT</a></div><div id="disqus_thread"></div><script>var disqus_shortname = 'prefer-tyl-site';
-var disqus_identifier = '2017/04/30/restructure-web-page/';
-var disqus_title = '页面重构应该遵循的基本原则和规范';
-var disqus_url = 'http://prefer-tyl.site/2017/04/30/restructure-web-page/';
-(function() {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-})();</script><script id="dsq-count-scr" src="//prefer-tyl-site.disqus.com/count.js" async></script><div class="copyright"><p>© 2017 - 2018 <a href="http://prefer-tyl.site">Prefert</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="http://prefer-tyl.site">Prefert</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="http://prefer-tyl.site/2017/04/30/restructure-web-page/">http://prefer-tyl.site/2017/04/30/restructure-web-page/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2017/06/27/front-page-modular-history/">
+        <span class="next-text nav-default">Web前端模块化发展历程</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:prefer.tyl@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/YarenTang" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Prefert</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://prefer-tyl.site/2017/04/30/restructure-web-page/';
+        this.page.identifier = '2017/04/30/restructure-web-page/';
+        this.page.title = '页面重构应该遵循的基本原则和规范';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//prefer-tyl-site.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

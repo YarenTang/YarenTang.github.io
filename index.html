@@ -1,6 +1,741 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Prefert</title><meta name="description" content="A Blog Powered By Hexo"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="icon" href="/avator.jpg"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://prefer-tyl.site/atom.xml" title="Prefert"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/avator.jpg" alt="logo"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link active">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="https://github.com/YarenTang" target="_blank" class="nav-list-link">GITHUB</a></li></ul></header><main class="container"><ul class="home post-list"><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2018/01/07/scala-design-patterns-6-bridge/" class="post-title-link">Scala 与设计模式（六）：Bridge 桥接模式</a></h2><div class="post-info">Jan 7, 2018</div><div class="post-content"><p>Bridge 桥接模式是一种对象结构型模式，又称为柄体(Handle and Body)模式或接口(Interface)模式。</p></div><a href="/2018/01/07/scala-design-patterns-6-bridge/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2017/12/01/kotlin-1/" class="post-title-link">Dive Into Kotlin（二）：Kotlin 类型结构设计</a></h2><div class="post-info">Dec 1, 2017</div><div class="post-content"><p>无论在静态语言还是动态语言中，「类型系统」都起到了至关重要的作用。</p></div><a href="/2017/12/01/kotlin-1/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2017/11/20/scala-design-patterns-5-adapter/" class="post-title-link">Scala 与设计模式（五）：Adapter 适配器模式</a></h2><div class="post-info">Nov 20, 2017</div><div class="post-content"><p>在编程中，我们也会遇上类似的问题：</p>
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Prefert">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/avator.jpg?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://prefer-tyl.site/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+
+
+
+  
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-65933410-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> Prefert </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Prefert</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="https://github.com/YarenTang">
+        <li class="mobile-menu-item">
+          
+          
+            GitHub
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Prefert</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="https://github.com/YarenTang">
+            
+            
+              GitHub
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts">
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2018/01/07/scala-design-patterns-6-bridge/">Scala 与设计模式（六）：Bridge 桥接模式</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-07
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>Bridge 桥接模式是一种对象结构型模式，又称为柄体(Handle and Body)模式或接口(Interface)模式。</p>
+          <div class="read-more">
+            <a href="/2018/01/07/scala-design-patterns-6-bridge/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/12/01/kotlin-1/">Dive Into Kotlin（二）：Kotlin 类型结构设计</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-01
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>类型系统在各种语言之间存在比较大的差异。最主要的差异存在于编译时期的语法，以及运行时期的操作实现方式。本文将为你介绍 Kotlin 中的类型结构设计。</p>
+          <div class="read-more">
+            <a href="/2017/12/01/kotlin-1/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/11/20/scala-design-patterns-5-adapter/">Scala 与设计模式（五）：Adapter 适配器模式</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-20
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>在编程中，我们也会遇上类似的问题：</p>
 <ol>
 <li>当你想使用一个已经存在的类，而它的接口不符合你的需求；  </li>
 <li>你想创建一个可以复用的类，该类可以与其他不相关的类或不可预见的类协同工作；  </li>
-<li>…</div><a href="/2017/11/20/scala-design-patterns-5-adapter/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2017/11/05/kotlin-0/" class="post-title-link">Dive Into Kotlin（一）：初探 Kotlin</a></h2><div class="post-info">Nov 5, 2017</div><div class="post-content"><p>在今年的 <a href="https://www.youtube.com/watch?v=Y2VF8tmLFHw">Google I/O</a> 大会上，Google 宣布在 Android 上为 Kotlin 提供一等支持（转为正房）。  </p>
-<p>在 Andorid 开发的圈子中，这无疑掀起了轩然大浪。对部分人来说，也许这是第一次听到 「Kotlin 」。事实上，在2011年7月，JetBrains 就推出 Kotlin 项目，直到去年2月份 Kotlin v1.0 才正式发布。    </p></div><a href="/2017/11/05/kotlin-0/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2017/08/19/scala-design-patterns-4-factory/" class="post-title-link">Scala 与设计模式（四）：Factory 工厂模式</a></h2><div class="post-info">Aug 19, 2017</div><div class="post-content"><p>工厂模式（Factory Pattern）是一种实现了「工厂」概念的面向对象设计模式。就像其他创建型模式一样，它也是处理在不指定对象具体类型的情况下创建对象的问题。<br></div><a href="/2017/08/19/scala-design-patterns-4-factory/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2017/07/27/scala-design-patterns-3-prototype/" class="post-title-link">Scala 与设计模式（三）：Prototype 原型模式</a></h2><div class="post-info">Jul 27, 2017</div><div class="post-content"><p>原型模式是创建型模式的一种,其特点在于通过「复制」一个已经存在的实例来返回新的实例,而不是新建实例。被复制的实例就是我们所称的「原型」，这个原型是可定制的。<br></div><a href="/2017/07/27/scala-design-patterns-3-prototype/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2017/07/20/scala-design-patterns-2-builder/" class="post-title-link">Scala 与设计模式（二）：Builder 创建者模式</a></h2><div class="post-info">Jul 20, 2017</div><div class="post-content"><p>创建者模式（Builder Pattern）支持以类方法而非类构造器的方式来创建实例。当一个类的构造器拥有多个版本以支持不同的用途时，这种模式尤其有用。</p></div><a href="/2017/07/20/scala-design-patterns-2-builder/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2017/07/09/scala-design-patterns-1-singleton/" class="post-title-link">Scala 与设计模式（一）：Singleton 单例模式</a></h2><div class="post-info">Jul 9, 2017</div><div class="post-content"><p>单例模式（<code>Singleton Pattern</code>）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。<br>这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。</p></div><a href="/2017/07/09/scala-design-patterns-1-singleton/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2017/06/27/front-page-modular-history/" class="post-title-link">Web前端模块化发展历程</a></h2><div class="post-info">Jun 27, 2017</div><div class="post-content"><p>模块化是一种处理复杂系统分解成为更好的可管理模块的方式，它可以把系统代码划分为一系列职责单一，高度解耦且可替换的模块，系统中某一部分的变化将如何影响其它部分就会变得显而易见，系统的可维护性更加简单…</p></div><a href="/2017/06/27/front-page-modular-history/" class="read-more">...more</a></article></li><li class="post-list-item"><article class="post-block"><h2 class="post-title"><a href="/2017/04/30/restructure-web-page/" class="post-title-link">页面重构应该遵循的基本原则和规范</a></h2><div class="post-info">Apr 30, 2017</div><div class="post-content"><p>简单来说，页面重构就是：将设计稿转换成 WEB 页面。在多人协同完成一个大型工程时，必要的原则与规范不仅能加快开发效率，更能使工程有着更好的体系结构，方便维护…</p></div><a href="/2017/04/30/restructure-web-page/" class="read-more">...more</a></article></li></ul></main><footer><div class="paginator"></div><div class="copyright"><p>© 2017 - 2018 <a href="http://prefer-tyl.site">Prefert</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML" integrity="sha384-crwIf/BuaWM9rM65iM+dWFldgQ1Un8jWZMuh3puxb8TOY9+linwLoI7ZHZT+aekW" crossorigin="anonymous"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-65933410-1",'auto');ga('send','pageview');</script></body></html>
+<li>…
+          <div class="read-more">
+            <a href="/2017/11/20/scala-design-patterns-5-adapter/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/11/05/kotlin-0/">Dive Into Kotlin（一）：初探 Kotlin</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-11-05
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>在今年的 <a href="https://www.youtube.com/watch?v=Y2VF8tmLFHw">Google I/O</a> 大会上，Google 宣布在 Android 上为 Kotlin 提供一等支持（转为正房）。  </p>
+<p>在 Andorid 开发的圈子中，这无疑掀起了轩然大浪。对部分人来说，也许这是第一次听到 「Kotlin 」。事实上，在2011年7月，JetBrains 就推出 Kotlin 项目，直到去年2月份 Kotlin v1.0 才正式发布。    </p>
+          <div class="read-more">
+            <a href="/2017/11/05/kotlin-0/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/08/19/scala-design-patterns-4-factory/">Scala 与设计模式（四）：Factory 工厂模式</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-08-19
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>工厂模式（Factory Pattern）是一种实现了「工厂」概念的面向对象设计模式。就像其他创建型模式一样，它也是处理在不指定对象具体类型的情况下创建对象的问题。<br>
+          <div class="read-more">
+            <a href="/2017/08/19/scala-design-patterns-4-factory/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/07/27/scala-design-patterns-3-prototype/">Scala 与设计模式（三）：Prototype 原型模式</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-27
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>原型模式是创建型模式的一种,其特点在于通过「复制」一个已经存在的实例来返回新的实例,而不是新建实例。被复制的实例就是我们所称的「原型」，这个原型是可定制的。<br>
+          <div class="read-more">
+            <a href="/2017/07/27/scala-design-patterns-3-prototype/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/07/20/scala-design-patterns-2-builder/">Scala 与设计模式（二）：Builder 创建者模式</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-20
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>创建者模式（Builder Pattern）支持以类方法而非类构造器的方式来创建实例。当一个类的构造器拥有多个版本以支持不同的用途时，这种模式尤其有用。</p>
+          <div class="read-more">
+            <a href="/2017/07/20/scala-design-patterns-2-builder/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/07/09/scala-design-patterns-1-singleton/">Scala 与设计模式（一）：Singleton 单例模式</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-09
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>单例模式（<code>Singleton Pattern</code>）是 Java 中最简单的设计模式之一。这种类型的设计模式属于创建型模式，它提供了一种创建对象的最佳方式。<br>这种模式涉及到一个单一的类，该类负责创建自己的对象，同时确保只有单个对象被创建。这个类提供了一种访问其唯一的对象的方式，可以直接访问，不需要实例化该类的对象。</p>
+          <div class="read-more">
+            <a href="/2017/07/09/scala-design-patterns-1-singleton/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/06/27/front-page-modular-history/">Web前端模块化发展历程</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-06-27
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>模块化是一种处理复杂系统分解成为更好的可管理模块的方式，它可以把系统代码划分为一系列职责单一，高度解耦且可替换的模块，系统中某一部分的变化将如何影响其它部分就会变得显而易见，系统的可维护性更加简单…</p>
+          <div class="read-more">
+            <a href="/2017/06/27/front-page-modular-history/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          <a class="post-link" href="/2017/04/30/restructure-web-page/">页面重构应该遵循的基本原则和规范</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-04-30
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>简单来说，页面重构就是：将设计稿转换成 WEB 页面。在多人协同完成一个大型工程时，必要的原则与规范不仅能加快开发效率，更能使工程有着更好的体系结构，方便维护…</p>
+          <div class="read-more">
+            <a href="/2017/04/30/restructure-web-page/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    
+    
+  </nav>
+
+
+          </div>
+          
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:prefer.tyl@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/YarenTang" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    主题 - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Prefert</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+
+
+    
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
