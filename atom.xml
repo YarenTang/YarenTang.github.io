@@ -435,11 +435,18 @@
     <link href="http://prefer-tyl.site/2017/11/05/kotlin-0/"/>
     <id>http://prefer-tyl.site/2017/11/05/kotlin-0/</id>
     <published>2017-11-05T00:04:13.000Z</published>
-    <updated>2017-11-05T16:39:02.129Z</updated>
+    <updated>2018-01-12T14:30:35.405Z</updated>
     
     <content type="html"><![CDATA[<p>在今年的 <a href="https://www.youtube.com/watch?v=Y2VF8tmLFHw" target="_blank" rel="external">Google I/O</a> 大会上，Google 宣布在 Android 上为 Kotlin 提供一等支持（转为正房）。  </p>
 <p>在 Andorid 开发的圈子中，这无疑掀起了轩然大浪。对部分人来说，也许这是第一次听到 「Kotlin 」。事实上，在2011年7月，JetBrains 就推出 Kotlin 项目，直到去年2月份 Kotlin v1.0 才正式发布。    </p>
-<a id="more"></a>
+<p>本系列文章「Dive Into Kotlin」将会对 Kotlin 进行较为系统的介绍，大致分为四个章节：</p>
+<ol>
+<li>热身 —— Kotlin 基本特性</li>
+<li>下水 —— Kotlin 核心</li>
+<li>潜入 —— Kotlin 与函数式</li>
+<li>遨游 —— kotlin 与 Android 实战<a id="more"></a>
+</li>
+</ol>
 <p>本文将简单介绍 Kotlin 的生态系统和部分语言功能。</p>
 <!-- toc -->
 <ul>
@@ -538,6 +545,12 @@
     
       &lt;p&gt;在今年的 &lt;a href=&quot;https://www.youtube.com/watch?v=Y2VF8tmLFHw&quot;&gt;Google I/O&lt;/a&gt; 大会上，Google 宣布在 Android 上为 Kotlin 提供一等支持（转为正房）。  &lt;/p&gt;
 &lt;p&gt;在 Andorid 开发的圈子中，这无疑掀起了轩然大浪。对部分人来说，也许这是第一次听到 「Kotlin 」。事实上，在2011年7月，JetBrains 就推出 Kotlin 项目，直到去年2月份 Kotlin v1.0 才正式发布。    &lt;/p&gt;
+&lt;p&gt;本系列文章「Dive Into Kotlin」将会对 Kotlin 进行较为系统的介绍，大致分为四个章节：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;热身 —— Kotlin 基本特性&lt;/li&gt;
+&lt;li&gt;下水 —— Kotlin 核心&lt;/li&gt;
+&lt;li&gt;潜入 —— Kotlin 与函数式&lt;/li&gt;
+&lt;li&gt;遨游 —— kotlin 与 Android 实战
     
     </summary>
     

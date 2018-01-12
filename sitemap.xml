@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://prefer-tyl.site/2017/11/05/kotlin-0/</loc>
+    
+    <lastmod>2018-01-12T14:30:35.405Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://prefer-tyl.site/2018/01/07/scala-design-patterns-6-bridge/</loc>
     
     <lastmod>2018-01-08T02:03:25.399Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://prefer-tyl.site/2017/11/20/scala-design-patterns-5-adapter/</loc>
     
     <lastmod>2017-11-19T17:28:48.898Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://prefer-tyl.site/2017/11/05/kotlin-0/</loc>
-    
-    <lastmod>2017-11-05T16:39:02.129Z</lastmod>
     
   </url>
   
