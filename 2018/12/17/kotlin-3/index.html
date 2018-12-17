@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="在 Kotlin 中，如果说 Any 是所有非空类型的根类型，那么 Any? 才是所有类型的根类型。"/>
+
+
+
+
+  <meta name="keywords" content="Kotlin, Android, ~Dive Into Kotlin, ^Prefert, Prefert" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Prefert">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/avator.jpg?v=2.6.0" />
+
+
+
+<link rel="canonical" href="http://prefer-tyl.site/2018/12/17/kotlin-3/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?64a4fdd86a442a7a65e07939b1c3a882";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-112245005-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+
+    <title> Dive Into Kotlin（四）：为什么 Kotlin 的根类型是「Any?」 - Prefert </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Prefert</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            Home
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            Archives
+          
+        </li>
+      </a>
+    
+      <a href="https://github.com/YarenTang">
+        <li class="mobile-menu-item">
+          
+          
+            GitHub
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Prefert</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              Home
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              Archives
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="https://github.com/YarenTang">
+            
+            
+              GitHub
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Dive Into Kotlin（四）：为什么 Kotlin 的根类型是「Any?」
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-12-17
+        </span>
+        
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">Contents</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#继承和子类型化的区别"><span class="toc-text">继承和子类型化的区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#any-与-any"><span class="toc-text">Any? 与 Any??</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>在 Kotlin 中，如果说 Any 是所有非空类型的根类型，那么 Any? 才是所有类型的根类型。</p>
+<a id="more"></a>
+<p>我们在<a href="http://prefer-tyl.site/2017/12/01/kotlin-1/">Dive Into Kotlin（二）：Kotlin 类型结构设计</a>中已经对Kotlin的类型系统进行过大致的介绍。</p>
+<p>文中提到过： <code>Any</code> 类型是 Kotlin 中 <strong>所有非空类型</strong>（ex: <code>String</code>, <code>Int</code>) 的根类型。  </p>
+<p>当我们需要和 Java 互操作的时候，Kotlin 把 Java 方法参数和返回类型中用到的 <code>Object</code> 类型看作 <code>Any</code>（更确切地说是当做「平台类型」)。当 Kotlin 函数中使用 <code>Any</code> 时，它会被编译成 Java 字节码中的 <code>Object</code>。</p>
+<blockquote>
+<p><strong>什么是平台类型?</strong></p>
+<p>平台类型本质上就是 Kotlin 不知道可空性信息的类型—所有 Java 引用类型在 Kotlin 中都表现为平台类型。当在 Kotlin 中处理平台类型的值的时候，它既可以被当做可空类型来处理，也可以被当做非空类型来操作。  </p>
+<p>平台类型的引入是 Kotlin 兼容 Java 时的一种权衡设计。试想下，如果所有来自 Java 的值都被看成非空，那么就容易写出比较危险的代码。反之，如果 Java 值都强制当做可空，则会导致大量的 <code>null</code> 检查。综合考量，平台类型是一种折中的设计方案。  </p>
+</blockquote>
+<p>在 Java 中，<code>Object</code> 类型位于其类型系统的顶级。如果说 Kotlin 与 Java 是100%兼容的，那我们是否可以说 Any 也是Kotlin的所有类型的顶级类型呢？在上一篇文章中，这个问题同样困扰了我，官方也并没有做出一个明确的说明。但是我们可以注意到的是， Kotlin 中引入了「可空类型」这个概念，这很可能会对系统层级结构产生影响。</p>
+<p>在探索根类型之前，先让我们理清两个概念：继承（<code>Inheriting</code>）和 子类型化（<code>Subtyping</code>）。</p>
+<h3 id="继承和子类型化的区别"><a href="#继承和子类型化的区别" class="headerlink" title="继承和子类型化的区别"></a>继承和子类型化的区别</h3><p>这是一个看似容易实则不简单的问题：到底什么才是子类型化( <code>Subtyping</code> )？ 如果你只有 Java 这门编程语言的开发经验，很容易陷入一个误区——继承关系决定父子类型关系。因为在 Java 中， 类与类型大部分情况下都是「等价」的（在 Java 泛型出现前）。</p>
+<p>事实上，「继承」和「子类型化」是两个完全不同的概念。</p>
+<ul>
+<li><p><strong>子类型化</strong>的核心是一种类型的替代关系，可表示为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">S &lt;: T</div></pre></td></tr></table></figure>
+<p>以上 <code>S</code> 是 <code>T</code> 的子类，这意味着在需要 <code>T</code> 类型值的地方，<code>S</code> 类型的值同样适用，如在 Kotlin 中 <code>Int</code> 是 <code>Number</code> 的子类：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printNum</span><span class="params">(num: <span class="type">Number</span>)</span></span> &#123;</div><div class="line">  println(num)</div><div class="line">&#125;</div><div class="line"></div><div class="line">&gt;&gt;&gt; <span class="keyword">val</span> n: <span class="built_in">Int</span> = <span class="number">1</span></div><div class="line">&gt;&gt;&gt; printNum(n)</div><div class="line"></div><div class="line">&gt;&gt;&gt; <span class="number">1</span></div><div class="line">&gt;&gt;&gt; printNum(<span class="string">"I am a String"</span>)</div><div class="line">error: type mismatch: inferred type <span class="keyword">is</span> String but Number was expected</div></pre></td></tr></table></figure>
+</li>
+<li><p>作为比较，<strong>继承</strong>强调的是一种「实现上的复用」，而子类型化是一种类型语义的关系，与实现没关系。在Java中，我们似乎也可以通过类继承来实现上述关系：</p>
+  <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">S</span> <span class="keyword">extends</span> <span class="title">class</span> <span class="title">T</span></span></div></pre></td></tr></table></figure>
+<p>  由于在声明父子类型关系的同时，也声明了继承的关系，所以通常会造成了某种程度上的混淆，但是这并不能说明他们就是等价的。   </p>
+</li>
+</ul>
+<p>虽然 <code>Any</code> 与 <code>Any?</code> 看起来没有继承关系，然而当我们在需要用 <code>Any?</code> 类型值的地方，显然可以传入一个类型为 <code>Any</code> 的值，这在编译上不会产生问题。反之却行不通，比如：一个参数类型为 <code>Any</code> 的函数，我们传入符合 <code>Any?</code> 类型的 <code>null</code> 值，就会出现如下的错误:</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">error: <span class="literal">null</span> can not be a value of a non-<span class="literal">null</span> type Any</div></pre></td></tr></table></figure>
+<p>以上，我们也可以初步得出结论：<code>Any</code>的值能在所有情况下代替 <code>Any?</code> 的值，这符合「子类型化」的概念。</p>
+<p>因此，我们可以很大胆地说：<strong>在Kotlin的类型系统中，<code>Any?</code> 是 <code>Any</code> 的父类型，而且是所有类型的根类型</strong>，虽然当前的 Kotlin 官网文档没有介绍过这一点。  </p>
+<h3 id="any-与-any"><a href="#Any-与-Any" class="headerlink" title="Any? 与 Any??"></a>Any? 与 Any??</h3><p>一个你可能会挑战的问题是，如果 <code>Any?</code> 是 <code>Any</code> 的父类型，那么 <code>Any??</code> 是否又是 <code>Any?</code> 的父类型， 如果成立，那么是否意味着就没有所谓的所有类型的根类型了?</p>
+<p>其实，Kotlin 中的可空类型可以看做所谓的 <code>Union Type</code>，在程序中通常用<code>A | B</code>表示，近似于数学中的并集。<br>如果用类型的并集来表示 <code>Any?</code> ，可写为 <code>Any ∪ Null</code>。相应的 <code>Any??</code> 就表示为 <code>Any ∪ Null ∪ Null</code>，这等价于 <code>Any ∪ Null</code>， 即 <code>Any??</code> 等价于 <code>Any?</code> 。因此，说 <code>Any?</code> 是所有类型的根类型是没有问题的。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>Author: </span>
+      <a href="http://prefer-tyl.site">Prefert</a>
+    </p>
+    <p class="copyright-item">
+      <span>Link: </span>
+      <a href="http://prefer-tyl.site/2018/12/17/kotlin-3/">http://prefer-tyl.site/2018/12/17/kotlin-3/</a>
+    </p>
+    <p class="copyright-item">
+      <span>License: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Kotlin/">Kotlin</a>
+            
+              <a href="/tags/Android/">Android</a>
+            
+              <a href="/tags/Dive-Into-Kotlin/">~Dive Into Kotlin</a>
+            
+              <a href="/tags/Prefert/">^Prefert</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/03/22/kotlin-2/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Dive Into Kotlin（三）：集合</span>
+        <span class="prev-text nav-mobile">Prev</span>
+      </a>
+    
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:prefer.tyl@gmail.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://github.com/YarenTang" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
+  </span>
+
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2018
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Prefert</span>
+  </span>
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  <script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'http://prefer-tyl.site/2018/12/17/kotlin-3/';
+        this.page.identifier = '2018/12/17/kotlin-3/';
+        this.page.title = 'Dive Into Kotlin（四）：为什么 Kotlin 的根类型是「Any?」';
+    };
+    (function() {
+    var d = document, s = d.createElement('script');
+
+    s.src = '//prefer-tyl-site.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();  
+  </script>
+
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
