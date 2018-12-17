@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://prefer-tyl.site/2018/12/17/kotlin-3/</loc>
+    
+    <lastmod>2018-12-17T16:03:08.423Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://prefer-tyl.site/2017/12/01/kotlin-1/</loc>
     
     <lastmod>2018-12-17T15:51:46.930Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://prefer-tyl.site/2018/03/22/kotlin-2/</loc>
     
     <lastmod>2018-12-17T15:50:43.300Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://prefer-tyl.site/2018/12/17/kotlin-3/</loc>
-    
-    <lastmod>2018-12-17T15:47:19.777Z</lastmod>
     
   </url>
   

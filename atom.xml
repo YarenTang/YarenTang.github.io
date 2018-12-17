@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://prefer-tyl.site/"/>
-  <updated>2018-12-17T15:47:19.777Z</updated>
+  <updated>2018-12-17T16:03:08.423Z</updated>
   <id>http://prefer-tyl.site/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://prefer-tyl.site/2018/12/17/kotlin-3/"/>
     <id>http://prefer-tyl.site/2018/12/17/kotlin-3/</id>
     <published>2018-12-16T16:00:00.000Z</published>
-    <updated>2018-12-17T15:47:19.777Z</updated>
+    <updated>2018-12-17T16:03:08.423Z</updated>
     
     <content type="html"><![CDATA[<p>在 Kotlin 中，如果说 Any 是所有非空类型的根类型，那么 Any? 才是所有类型的根类型。</p>
 <a id="more"></a>
@@ -37,12 +37,12 @@
 <h3 id="继承和子类型化的区别"><a href="#继承和子类型化的区别" class="headerlink" title="继承和子类型化的区别"></a>继承和子类型化的区别</h3><p>这是一个看似容易实则不简单的问题：到底什么才是子类型化( <code>Subtyping</code> )？ 如果你只有 Java 这门编程语言的开发经验，很容易陷入一个误区——继承关系决定父子类型关系。因为在 Java 中， 类与类型大部分情况下都是「等价」的（在 Java 泛型出现前）。</p>
 <p>事实上，「继承」和「子类型化」是两个完全不同的概念。</p>
 <ul>
-<li><p><strong>子类型化</strong>的核心是一种类型的替代关系，可表示为：</p>
+<li><p><strong>子类型化</strong>的核心是一种类型的替代关系（我们也可以称之为子类型多态），通常可表示为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">S &lt;: T</div></pre></td></tr></table></figure>
 <p>以上 <code>S</code> 是 <code>T</code> 的子类，这意味着在需要 <code>T</code> 类型值的地方，<code>S</code> 类型的值同样适用，如在 Kotlin 中 <code>Int</code> 是 <code>Number</code> 的子类：</p>
 <figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">fun</span> <span class="title">printNum</span><span class="params">(num: <span class="type">Number</span>)</span></span> &#123;</div><div class="line">  println(num)</div><div class="line">&#125;</div><div class="line"></div><div class="line">&gt;&gt;&gt; <span class="keyword">val</span> n: <span class="built_in">Int</span> = <span class="number">1</span></div><div class="line">&gt;&gt;&gt; printNum(n)</div><div class="line"></div><div class="line">&gt;&gt;&gt; <span class="number">1</span></div><div class="line">&gt;&gt;&gt; printNum(<span class="string">"I am a String"</span>)</div><div class="line">error: type mismatch: inferred type <span class="keyword">is</span> String but Number was expected</div></pre></td></tr></table></figure>
 </li>
-<li><p>作为比较，<strong>继承</strong>强调的是一种「实现上的复用」，而子类型化是一种类型语义的关系，与实现没关系。在Java中，我们似乎也可以通过类继承来实现上述关系：</p>
+<li><p>相对而言，<strong>继承</strong>强调的是一种「实现上的复用」，而子类型化是一种类型语义的关系，与实现没关系。在Java中，我们似乎也可以通过类继承来实现上述关系：</p>
   <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">S</span> <span class="keyword">extends</span> <span class="title">class</span> <span class="title">T</span></span></div></pre></td></tr></table></figure>
 <p>  由于在声明父子类型关系的同时，也声明了继承的关系，所以通常会造成了某种程度上的混淆，但是这并不能说明他们就是等价的。   </p>
 </li>
