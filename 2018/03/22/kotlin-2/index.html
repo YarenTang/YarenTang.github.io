@@ -242,7 +242,7 @@
 <h2 id="一-kotlin-集合的结构"><a href="#一-Kotlin-集合的结构" class="headerlink" title="一. Kotlin 集合的结构"></a><strong>一. Kotlin 集合的结构</strong></h2><p>我们都知道 Kotlin 集合基于 <a href="https://www.tutorialspoint.com/java/java_collections.htm" target="_blank" rel="external">Java 集合框架</a>。</p>
 <p>理所应当，它的核心也是 <code>Iterator</code> 。  </p>
 <h3 id="iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a><strong>Iterator</strong></h3><p>作为一个 Java 开发者，我们都知道 <code>Iterator</code> 主要的作用就是提供遍历的能力。  </p>
-<p>但是，<strong>Kotlin 将集合分成了两类： 「可变集合」 与  「不可变集合」</strong>。造成<code>Iterator</code> 层级核心变动如下：</p>
+<p>但是，<strong>Kotlin 将集合分成了两类： 「可变集合」 与  「引用不可变集合」</strong>。造成<code>Iterator</code> 层级核心变动如下：</p>
 <ul>
 <li><code>ListIterator</code> 仅支持遍历。</li>
 <li><code>MutableIterator</code> 提供删除元素的能力。</li>

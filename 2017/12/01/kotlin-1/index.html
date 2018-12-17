@@ -336,7 +336,7 @@
 <p>正好也符合我们的日常理解：“香蕉是水果，水果不是香蕉。”</p>
 <p>另外，Kotlin 把 Java 方法参数和返回类型中用到的 <code>Object</code> 类型看作 <code>Any</code>(更确切地是当做「平台类型」)。当 Kotlin 函数函数中使用 <code>Any</code> 时，它会被编译成 Java 字节码中的 <code>Object</code>。</p>
 <blockquote>
-<p>Hint: 平台类型本质上就是 Kotlin 不知道可控性信息的类型 —— 所有 Java 引用类型在 Kotlin 中都表现为平台类型。</p>
+<p>Hint: 平台类型本质上就是 Kotlin 不知道可空性信息的类型 —— 所有 Java 引用类型在 Kotlin 中都表现为平台类型。</p>
 </blockquote>
 <p>上面提到：在 Kotlin 中， <strong><code>Any</code> 是所有 非空类型 的超类</strong>。<br>你可能会有疑问： <code>null</code> 类型的父类是什么呢？</p>
 <h2 id="unit-kotlin-里的-void"><a href="#Unit-——-Kotlin-里的-void" class="headerlink" title="Unit —— Kotlin 里的 void"></a>Unit —— Kotlin 里的 void</h2><p><strong>Kotlin 是一种表达式导向的语言，所有流程控制语句都是表达式</strong>。它没有 Java 和 C 中的 <code>void</code> 函数，函数总是会返回一个值。有时候函数并没有计算任何东西 —— 这被我们称作他们的副作用（side effect），这时将会返回 <code>Unit</code>——具有单一值的类型。</p>

@@ -77,7 +77,7 @@
     <link href="http://prefer-tyl.site/2018/03/22/kotlin-2/"/>
     <id>http://prefer-tyl.site/2018/03/22/kotlin-2/</id>
     <published>2018-03-21T16:00:00.000Z</published>
-    <updated>2018-03-24T08:09:49.547Z</updated>
+    <updated>2018-12-17T15:50:43.300Z</updated>
     
     <content type="html"><![CDATA[<p>在 Java/Android 开发中，我们经常用集合来处理数据。</p>
 <p>Java 中的集合相对而言是比较简单的，但是在很多时候，语法显得冗长。</p>
@@ -97,7 +97,7 @@
 <h2 id="一-kotlin-集合的结构"><a href="#一-Kotlin-集合的结构" class="headerlink" title="一. Kotlin 集合的结构"></a><strong>一. Kotlin 集合的结构</strong></h2><p>我们都知道 Kotlin 集合基于 <a href="https://www.tutorialspoint.com/java/java_collections.htm" target="_blank" rel="external">Java 集合框架</a>。</p>
 <p>理所应当，它的核心也是 <code>Iterator</code> 。  </p>
 <h3 id="iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a><strong>Iterator</strong></h3><p>作为一个 Java 开发者，我们都知道 <code>Iterator</code> 主要的作用就是提供遍历的能力。  </p>
-<p>但是，<strong>Kotlin 将集合分成了两类： 「可变集合」 与  「不可变集合」</strong>。造成<code>Iterator</code> 层级核心变动如下：</p>
+<p>但是，<strong>Kotlin 将集合分成了两类： 「可变集合」 与  「引用不可变集合」</strong>。造成<code>Iterator</code> 层级核心变动如下：</p>
 <ul>
 <li><code>ListIterator</code> 仅支持遍历。</li>
 <li><code>MutableIterator</code> 提供删除元素的能力。</li>
@@ -452,7 +452,7 @@
     <link href="http://prefer-tyl.site/2017/12/01/kotlin-1/"/>
     <id>http://prefer-tyl.site/2017/12/01/kotlin-1/</id>
     <published>2017-11-30T16:00:00.000Z</published>
-    <updated>2017-12-18T15:44:25.577Z</updated>
+    <updated>2018-12-17T15:51:46.930Z</updated>
     
     <content type="html"><![CDATA[<p>无论在静态语言还是动态语言中，「类型系统」都起到了至关重要的作用。</p>
 <a id="more"></a>
@@ -566,7 +566,7 @@
 <p>正好也符合我们的日常理解：“香蕉是水果，水果不是香蕉。”</p>
 <p>另外，Kotlin 把 Java 方法参数和返回类型中用到的 <code>Object</code> 类型看作 <code>Any</code>(更确切地是当做「平台类型」)。当 Kotlin 函数函数中使用 <code>Any</code> 时，它会被编译成 Java 字节码中的 <code>Object</code>。</p>
 <blockquote>
-<p>Hint: 平台类型本质上就是 Kotlin 不知道可控性信息的类型 —— 所有 Java 引用类型在 Kotlin 中都表现为平台类型。</p>
+<p>Hint: 平台类型本质上就是 Kotlin 不知道可空性信息的类型 —— 所有 Java 引用类型在 Kotlin 中都表现为平台类型。</p>
 </blockquote>
 <p>上面提到：在 Kotlin 中， <strong><code>Any</code> 是所有 非空类型 的超类</strong>。<br>你可能会有疑问： <code>null</code> 类型的父类是什么呢？</p>
 <h2 id="unit-kotlin-里的-void"><a href="#Unit-——-Kotlin-里的-void" class="headerlink" title="Unit —— Kotlin 里的 void"></a>Unit —— Kotlin 里的 void</h2><p><strong>Kotlin 是一种表达式导向的语言，所有流程控制语句都是表达式</strong>。它没有 Java 和 C 中的 <code>void</code> 函数，函数总是会返回一个值。有时候函数并没有计算任何东西 —— 这被我们称作他们的副作用（side effect），这时将会返回 <code>Unit</code>——具有单一值的类型。</p>

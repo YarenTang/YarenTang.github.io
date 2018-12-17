@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://prefer-tyl.site/2018/12/17/kotlin-3/</loc>
+    <loc>http://prefer-tyl.site/2017/12/01/kotlin-1/</loc>
     
-    <lastmod>2018-12-17T15:47:19.777Z</lastmod>
+    <lastmod>2018-12-17T15:51:46.930Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://prefer-tyl.site/2018/03/22/kotlin-2/</loc>
     
-    <lastmod>2018-03-24T08:09:49.547Z</lastmod>
+    <lastmod>2018-12-17T15:50:43.300Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://prefer-tyl.site/2018/12/17/kotlin-3/</loc>
+    
+    <lastmod>2018-12-17T15:47:19.777Z</lastmod>
     
   </url>
   
@@ -23,13 +30,6 @@
   </url>
   
   <url>
-    <loc>http://prefer-tyl.site/2018/01/07/scala-design-patterns-6-bridge/</loc>
-    
-    <lastmod>2018-01-08T02:03:25.399Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://prefer-tyl.site/2018/01/07/scala-design-patterns-7-composite/</loc>
     
     <lastmod>2018-01-08T02:03:25.399Z</lastmod>
@@ -37,9 +37,9 @@
   </url>
   
   <url>
-    <loc>http://prefer-tyl.site/2017/12/01/kotlin-1/</loc>
+    <loc>http://prefer-tyl.site/2018/01/07/scala-design-patterns-6-bridge/</loc>
     
-    <lastmod>2017-12-18T15:44:25.577Z</lastmod>
+    <lastmod>2018-01-08T02:03:25.399Z</lastmod>
     
   </url>
   
