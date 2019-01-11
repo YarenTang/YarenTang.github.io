@@ -239,7 +239,7 @@ val b2: Banana = f
 
 另外，Kotlin 把 Java 方法参数和返回类型中用到的 `Object` 类型看作 `Any`(更确切地是当做「平台类型」)。当 Kotlin 函数函数中使用 `Any` 时，它会被编译成 Java 字节码中的 `Object`。
 
-> Hint: 平台类型本质上就是 Kotlin 不知道可控性信息的类型 —— 所有 Java 引用类型在 Kotlin 中都表现为平台类型。
+> Hint: 平台类型本质上就是 Kotlin 不知道可空性信息的类型 —— 所有 Java 引用类型在 Kotlin 中都表现为平台类型。
 
 上面提到：在 Kotlin 中， **`Any` 是所有 非空类型 的超类**。  
 你可能会有疑问： `null` 类型的父类是什么呢？
