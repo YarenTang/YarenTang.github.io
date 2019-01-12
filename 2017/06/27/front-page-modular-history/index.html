@@ -120,7 +120,7 @@
         <li class="mobile-menu-item">
           
           
-            Home
+            首页
           
         </li>
       </a>
@@ -129,7 +129,7 @@
         <li class="mobile-menu-item">
           
           
-            Archives
+            归档
           
         </li>
       </a>
@@ -159,7 +159,7 @@
           <a class="menu-item-link" href="/">
             
             
-              Home
+              首页
             
           </a>
         </li>
@@ -168,7 +168,7 @@
           <a class="menu-item-link" href="/archives/">
             
             
-              Archives
+              归档
             
           </a>
         </li>
@@ -205,6 +205,12 @@
         <span class="post-time">
           2017-06-27
         </span>
+        <span class="post-time">
+          字数统计: 3.6k
+        </span>
+        <span class="post-time">
+          阅读时长: 13min
+        </span>
         
         
       </div>
@@ -213,7 +219,7 @@
     
     
   <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
+    <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
       <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-什么是模块化"><span class="toc-text">1. 什么是模块化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-为什么要模块化"><span class="toc-text">2. 为什么要模块化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-web-前端的模块化的历史浪潮"><span class="toc-text">3. Web 前端的模块化的历史浪潮</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#31-发展历史"><span class="toc-text">3.1 发展历史</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#311-函数封装"><span class="toc-text">3.1.1 函数封装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#312-对象"><span class="toc-text">3.1.2 对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#313-立即执行函数immediately-invoked-function-expression"><span class="toc-text">3.1.3 立即执行函数(immediately-invoked function expression )</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#314-script-loader"><span class="toc-text">3.1.4 Script Loader</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#labjs"><span class="toc-text">LABjs</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#commonjs"><span class="toc-text">CommonJS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双塔奇兵-amdcmd"><span class="toc-text">双塔奇兵 AMD/CMD</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#32-解决方案"><span class="toc-text">3.2 解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#webpack"><span class="toc-text">Webpack</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-未来的模块化"><span class="toc-text">4. 未来的模块化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#webassembly-是什么"><span class="toc-text">WebAssembly 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webassembly-的目标"><span class="toc-text">WebAssembly 的目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webassembly-的核心"><span class="toc-text">WebAssembly 的核心</span></a></li></ol></li></ol>
     </div>
@@ -273,14 +279,14 @@
 <p>举个例子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> Module = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> _private = <span class="string">"safe now"</span>;</div><div class="line">    <span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">        <span class="built_in">console</span>.log(_private)</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> &#123;</div><div class="line">        <span class="attr">foo</span>: foo</div><div class="line">    &#125;</div><div class="line">&#125;)()</div><div class="line"></div><div class="line">Module.foo();</div><div class="line">Module._private; <span class="comment">// undefined</span></div></pre></td></tr></table></figure></p>
 <p>我们可以调用定义的方法，但是不能调用定义的属性。这样的模式使得变量冲突降到最低，并且能够控制暴露的方法(类似于接口）。这便是现代模块实现的基石！  </p>
 <h3 id="314-script-loader"><a href="#3-1-4-Script-Loader" class="headerlink" title="3.1.4 Script Loader"></a>3.1.4 Script Loader</h3><p>最原始的 JS 加载方法就是在 Html 头文件中通过 Script 标签直接引入，类似下面这样：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"http://remote.tld/jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"local/plugin1.jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"local/plugin2.jquery.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script src=<span class="string">"local/init.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">	initMyPage();</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"http://remote.tld/jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"local/plugin1.jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"local/plugin2.jquery.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script src=<span class="string">"local/init.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">	initMyPage();</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
 <p>初学者可能会有疑问，全都写在一个文件中看着不是挺方便的吗？<br>首先以上列举的可能只是实际项目中的一小部分，其次不要忽视 <code>&lt;script&gt;</code> 的一个特点：<code>并行加载，顺序执行</code>，这要求开发者需要按照严格的读取顺序，并且很有可能会阻塞阻止文档渲染(<code>async</code> 新特性在 HTML5 中才提出)。文件少的时候写起来会很方便，一旦项目变复杂缺点就会暴露无疑：<strong>难以维护，依赖模糊，请求过多</strong> 。  </p>
 <h4 id="labjs"><a href="#LABjs" class="headerlink" title="LABjs"></a>LABjs</h4><p>为了解决依赖模糊，我们迫切需要一个加载器（<code>Loader</code>）最先出现在开发者视野中的 <code>Loader</code> 应该是 <a href="https://github.com/getify/LABjs]" target="_blank" rel="external"><code>LABjs</code></a>(2009)（ HTML5 发布才有了 <code>async</code> 特性）</p>
 <blockquote>
 <p>LABjs 的核心是 LAB（Loading and Blocking）：Loading 指异步并行加载，Blocking 是指同步等待执行。  </p>
 </blockquote>
 <p>通过使用 LABjs ,上方代码就可以变成这样：  </p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"LAB.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div><div class="line">&lt;script&gt;</div><div class="line">  $LAB</div><div class="line">  .script(<span class="string">"http://remote.tld/jquery.js"</span>).wait()<span class="comment">//`.wait` 表示加载后立即运行</span></div><div class="line">  .script(<span class="string">"/local/plugin1.jquery.js"</span>)</div><div class="line">  .script(<span class="string">"/local/plugin2.jquery.js"</span>).wait()</div><div class="line">  .script(<span class="string">"/local/init.js"</span>).wait(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      initMyPage();</div><div class="line">  &#125;);</div><div class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;script src=<span class="string">"LAB.js"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;script&gt;</div><div class="line">  $LAB</div><div class="line">  .script(<span class="string">"http://remote.tld/jquery.js"</span>).wait()<span class="comment">//`.wait` 表示加载后立即运行</span></div><div class="line">  .script(<span class="string">"/local/plugin1.jquery.js"</span>)</div><div class="line">  .script(<span class="string">"/local/plugin2.jquery.js"</span>).wait()</div><div class="line">  .script(<span class="string">"/local/init.js"</span>).wait(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">      initMyPage();</div><div class="line">  &#125;);</div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure>
 <p>当然同一时期风靡的还有类库模块化框架 <a href="https://yuilibrary.com/" target="_blank" rel="external">YUI</a>，大家可自行查阅。</p>
 <h4 id="commonjs"><a href="#CommonJS" class="headerlink" title="CommonJS"></a>CommonJS</h4><p>在开发者们拼命为浏览器兼容等问题绞尽脑汁的时候，CommonJS 横空出世！<br>服务器端的 <code>Node.js</code> 遵循 <a href="http://wiki.commonjs.org/wiki/CommonJS" target="_blank" rel="external">CommonJS规范</a>，该规范的核心思想是允许模块通过 <code>require</code> 方法来同步加载所要依赖的其他模块，然后通过 <code>exports</code> 或 <code>module.exports</code> 来导出需要暴露的接口。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">require</span>(<span class="string">"module"</span>);</div><div class="line"><span class="built_in">require</span>(<span class="string">"../file.js"</span>);</div><div class="line">exports.doStuff = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;;</div><div class="line"><span class="built_in">module</span>.exports = someValue;</div></pre></td></tr></table></figure>
@@ -407,15 +413,15 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
-      <span>Author: </span>
+      <span>原文作者: </span>
       <a href="http://prefer-tyl.site">Prefert</a>
     </p>
     <p class="copyright-item">
-      <span>Link: </span>
+      <span>原文链接: </span>
       <a href="http://prefer-tyl.site/2017/06/27/front-page-modular-history/">http://prefer-tyl.site/2017/06/27/front-page-modular-history/</a>
     </p>
     <p class="copyright-item">
-      <span>License: </span>
+      <span>许可协议: </span>
       
       <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
     </p>
@@ -437,13 +443,13 @@
       <a class="prev" href="/2017/04/30/restructure-web-page/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">页面重构应该遵循的基本原则和规范</span>
-        <span class="prev-text nav-mobile">Prev</span>
+        <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
       <a class="next" href="/2017/07/09/scala-design-patterns-1-singleton/">
         <span class="next-text nav-default">Scala 与设计模式（一）：Singleton 单例模式</span>
-        <span class="prev-text nav-mobile">Next</span>
+        <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
     
@@ -517,26 +523,29 @@
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 -
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 
   <span class="copyright-year">
     
-    &copy; 
-     
-      2017 - 
+    &copy;
+    
+      2017 -
     
     2019
+    <span class="all-count">字数统计: 31.3k </span>
+    <br>
 
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
     <span class="author">Prefert</span>
+
   </span>
 </div>
 
@@ -594,5 +603,5 @@
     <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
 <script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
 
-  </body>
+  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

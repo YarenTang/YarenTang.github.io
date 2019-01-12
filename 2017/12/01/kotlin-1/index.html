@@ -122,7 +122,7 @@
         <li class="mobile-menu-item">
           
           
-            Home
+            首页
           
         </li>
       </a>
@@ -131,7 +131,7 @@
         <li class="mobile-menu-item">
           
           
-            Archives
+            归档
           
         </li>
       </a>
@@ -161,7 +161,7 @@
           <a class="menu-item-link" href="/">
             
             
-              Home
+              首页
             
           </a>
         </li>
@@ -170,7 +170,7 @@
           <a class="menu-item-link" href="/archives/">
             
             
-              Archives
+              归档
             
           </a>
         </li>
@@ -207,6 +207,12 @@
         <span class="post-time">
           2017-12-01
         </span>
+        <span class="post-time">
+          字数统计: 3.4k
+        </span>
+        <span class="post-time">
+          阅读时长: 13min
+        </span>
         
         
       </div>
@@ -215,7 +221,7 @@
     
     
   <div class="post-toc" id="post-toc">
-    <h2 class="post-toc-title">Contents</h2>
+    <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
       <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一-类型系统简介"><span class="toc-text">一、类型系统简介</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#类型系统的作用"><span class="toc-text">类型系统的作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二-kotlin-的类型系统"><span class="toc-text">二、Kotlin 的类型系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#可空类型nullable-types-int-boolean-及其他"><span class="toc-text">可空类型(Nullable Types) —— Int？ Boolean？ 及其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#深入-nullable-types"><span class="toc-text">深入 Nullable Types</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安全调用"><span class="toc-text">?. —— 安全调用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elvis-运算符"><span class="toc-text">?: —— Elvis 运算符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本数据类型-int-boolean-及其他"><span class="toc-text">基本数据类型 —— Int, Boolean 及其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数字转换"><span class="toc-text">数字转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用类型系统-any-any"><span class="toc-text">通用类型系统 —— Any, Any?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unit-kotlin-里的-void"><span class="toc-text">Unit —— Kotlin 里的 void</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nothing"><span class="toc-text">Nothing</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#可空的-nothing"><span class="toc-text">可空的 Nothing?</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三-总结"><span class="toc-text">三、总结</span></a></li></ol>
     </div>
@@ -385,15 +391,15 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
-      <span>Author: </span>
+      <span>原文作者: </span>
       <a href="http://prefer-tyl.site">Prefert</a>
     </p>
     <p class="copyright-item">
-      <span>Link: </span>
+      <span>原文链接: </span>
       <a href="http://prefer-tyl.site/2017/12/01/kotlin-1/">http://prefer-tyl.site/2017/12/01/kotlin-1/</a>
     </p>
     <p class="copyright-item">
-      <span>License: </span>
+      <span>许可协议: </span>
       
       <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
     </p>
@@ -423,13 +429,13 @@
       <a class="prev" href="/2017/11/20/scala-design-patterns-5-adapter/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Scala 与设计模式（五）：Adapter 适配器模式</span>
-        <span class="prev-text nav-mobile">Prev</span>
+        <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
       <a class="next" href="/2018/01/07/scala-design-patterns-7-composite/">
         <span class="next-text nav-default">Scala 与设计模式（六）：Bridge 桥接模式</span>
-        <span class="prev-text nav-mobile">Next</span>
+        <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
     
@@ -503,26 +509,29 @@
 
 <div class="copyright">
   <span class="power-by">
-    Powered by <a class="hexo-link" href="https://hexo.io/">Hexo</a>
+    由 <a class="hexo-link" href="https://hexo.io/">Hexo</a> 强力驱动
   </span>
   <span class="division">|</span>
   <span class="theme-info">
-    Theme - 
+    主题 -
     <a class="theme-link" href="https://github.com/ahonn/hexo-theme-even">Even</a>
   </span>
 
   <span class="copyright-year">
     
-    &copy; 
-     
-      2017 - 
+    &copy;
+    
+      2017 -
     
     2019
+    <span class="all-count">字数统计: 31.3k </span>
+    <br>
 
     <span class="heart">
       <i class="iconfont icon-heart"></i>
     </span>
     <span class="author">Prefert</span>
+
   </span>
 </div>
 
@@ -580,5 +589,5 @@
     <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
 <script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
 
-  </body>
+  <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
