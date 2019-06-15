@@ -625,7 +625,7 @@
     <link href="http://prefer-tyl.site/2017/11/20/scala-design-patterns-5-adapter/"/>
     <id>http://prefer-tyl.site/2017/11/20/scala-design-patterns-5-adapter/</id>
     <published>2017-11-20T01:00:13.000Z</published>
-    <updated>2017-11-19T17:28:48.898Z</updated>
+    <updated>2017-11-19T17:28:48.899Z</updated>
     
     <content type="html"><![CDATA[<p>在编程中，我们也会遇上类似的问题：</p>
 <ol>
@@ -756,7 +756,7 @@
     <link href="http://prefer-tyl.site/2017/11/05/kotlin-0/"/>
     <id>http://prefer-tyl.site/2017/11/05/kotlin-0/</id>
     <published>2017-11-05T00:04:13.000Z</published>
-    <updated>2018-01-12T14:30:35.405Z</updated>
+    <updated>2018-01-12T14:30:35.406Z</updated>
     
     <content type="html"><![CDATA[<p>在今年的 <a href="https://www.youtube.com/watch?v=Y2VF8tmLFHw" target="_blank" rel="external">Google I/O</a> 大会上，Google 宣布在 Android 上为 Kotlin 提供一等支持（转为正房）。  </p>
 <p>在 Andorid 开发的圈子中，这无疑掀起了轩然大浪。对部分人来说，也许这是第一次听到 「Kotlin 」。事实上，在2011年7月，JetBrains 就推出 Kotlin 项目，直到去年2月份 Kotlin v1.0 才正式发布。    </p>
@@ -883,7 +883,7 @@
     <link href="http://prefer-tyl.site/2017/08/19/scala-design-patterns-4-factory/"/>
     <id>http://prefer-tyl.site/2017/08/19/scala-design-patterns-4-factory/</id>
     <published>2017-08-18T16:00:00.000Z</published>
-    <updated>2017-08-20T03:35:29.373Z</updated>
+    <updated>2017-08-20T03:35:29.374Z</updated>
     
     <content type="html"><![CDATA[<p>工厂模式（Factory Pattern）是一种实现了「工厂」概念的面向对象设计模式。就像其他创建型模式一样，它也是处理在不指定对象具体类型的情况下创建对象的问题。<br><a id="more"></a></p>
 <!-- toc -->
@@ -1622,7 +1622,7 @@
     <link href="http://prefer-tyl.site/2017/04/30/restructure-web-page/"/>
     <id>http://prefer-tyl.site/2017/04/30/restructure-web-page/</id>
     <published>2017-04-30T00:30:13.000Z</published>
-    <updated>2017-06-27T13:06:56.455Z</updated>
+    <updated>2017-06-27T13:06:56.456Z</updated>
     
     <content type="html"><![CDATA[<p>简单来说，页面重构就是：将设计稿转换成 WEB 页面。在多人协同完成一个大型工程时，必要的原则与规范不仅能加快开发效率，更能使工程有着更好的体系结构，方便维护…</p>
 <a id="more"></a>
