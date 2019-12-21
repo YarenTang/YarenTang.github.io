@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://prefer-tyl.site/"/>
-  <updated>2019-12-21T05:49:22.706Z</updated>
+  <updated>2018-12-17T16:03:08.423Z</updated>
   <id>http://prefer-tyl.site/</id>
   
   <author>
@@ -14,35 +14,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="http://prefer-tyl.site/2019/12/21/io-model/"/>
-    <id>http://prefer-tyl.site/2019/12/21/io-model/</id>
-    <published>2019-12-21T05:49:22.703Z</published>
-    <updated>2019-12-21T05:49:22.706Z</updated>
-    
-    <content type="html"><![CDATA[<p>windows i/o 模型：</p>
-<p>​    <strong>一：select模型    </strong></p>
-<p><strong>二：WSAAsyncSelect模型    </strong></p>
-<p><strong>三：WSAEventSelect模型    </strong></p>
-<p><strong>四：Overlapped I/O 事件通知模型    </strong></p>
-<p><strong>五：Overlapped I/O 完成例程模型    </strong></p>
-<p><strong>六：IOCP 模型</strong></p>
-<p>linux i/o 模型</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;windows i/o 模型：&lt;/p&gt;
-&lt;p&gt;​    &lt;strong&gt;一：select模型    &lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;二：WSAAsyncSelect模型    &lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;三：WSAEventSelec
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Dive Into Kotlin（四）：为什么 Kotlin 的根类型是「Any?」</title>
